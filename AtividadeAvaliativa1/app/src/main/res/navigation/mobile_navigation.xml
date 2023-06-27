@@ -12,10 +12,16 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.example.atividadeavaliativa1.ui.map.MapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_map" />
+
+    <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.atividadeavaliativa1.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.example.atividadeavaliativa1.ui.perfil.PerfilFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_perfil" />
 
     <fragment
         android:id="@+id/navigation_notifications"
