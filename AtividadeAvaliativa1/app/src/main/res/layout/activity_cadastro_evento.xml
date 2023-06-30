@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CadastroEvento">
+
+    <EditText
+        android:id="@+id/eventoData"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="datetime|time"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="167dp"
+        tools:text="Definir Horário"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/eventoName"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/eventoData"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/iconTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="Título do evento" />
+
+    <EditText
+        android:id="@+id/eventoEndereco"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iconLocal"
+        app:layout_constraintTop_toBottomOf="@+id/eventoData"
+        tools:text="Localização" />
+
+    <Button
+        android:id="@+id/botaoCadastroEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="26dp"
+        android:background="@color/black"
+        android:text="@string/salvar"
+        app:layout_constraintBottom_toTopOf="@+id/eventoName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/iconLocal"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:contentDescription="@string/iconlocal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconHorario"
+        app:srcCompat="@drawable/icons8_map_50" />
+
+    <ImageView
+        android:id="@+id/iconHorario"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/iconhorario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconTitulo"
+        app:srcCompat="@drawable/icons8_rel_gio_48" />
+
+    <ImageView
+        android:id="@+id/iconTitulo"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="122dp"
+        android:contentDescription="@string/icontitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icons8_t_tulo_50" />
+
+    <ImageView
+        android:id="@+id/iconDescricao"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:contentDescription="@string/descricao"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iconLocal"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/icons8_texto_50" />
+
+    <EditText
+        android:id="@+id/eventoDescricao"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iconDescricao"
+        app:layout_constraintTop_toBottomOf="@+id/eventoEndereco"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Descrição"
+        android:autofillHints="" />
+
+    <ImageView
+        android:id="@+id/fecharCadastroEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="265dp"
+        android:layout_marginBottom="63dp"
+        android:contentDescription="@string/fecharCadastroEvento"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintBottom_toTopOf="@+id/iconTitulo"
+        app:layout_constraintEnd_toStartOf="@+id/botaoCadastroEvento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
