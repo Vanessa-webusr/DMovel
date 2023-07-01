@@ -1,5 +1,6 @@
 package com.example.atividadeavaliativa1.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.atividadeavaliativa1.CadastroEventoActivity;
+import com.example.atividadeavaliativa1.MainActivity;
 import com.example.atividadeavaliativa1.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -26,6 +29,11 @@ public class HomeFragment extends Fragment {
 
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        binding.buttonEvento.setOnClickListener(view -> {
+
+
+        });
         return root;
     }
 

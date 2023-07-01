@@ -1,8 +1,13 @@
 package com.example.atividadeavaliativa1.ui.perfil;
 
+import android.content.Intent;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.atividadeavaliativa1.MainActivity;
+import com.example.atividadeavaliativa1.R;
 
 public class PerfilViewModel extends ViewModel {
 
@@ -10,7 +15,7 @@ public class PerfilViewModel extends ViewModel {
 
     public PerfilViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is perfil fragment");
+        //mText.setValue("This is perfil fragment");
     }
 
     public LiveData<String> getText() {
