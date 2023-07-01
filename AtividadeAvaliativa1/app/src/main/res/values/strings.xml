@@ -6,6 +6,7 @@
     <string name="title_chat">Chat</string>
     <string name="title_map">Map</string>
     <string name="title_activity_maps_fragment">MapsFragment</string>
+<<<<<<< HEAD
     <string name="title_activity_cadastro_eventos">CadastroEventosActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -33,3 +34,6 @@
     <string name="register_event_sucess">Event registered successfully!</string>
     <string name="fill_incomplete">Fill all the fields!</string>
 </resources>
+=======
+</resources>
+>>>>>>> main
