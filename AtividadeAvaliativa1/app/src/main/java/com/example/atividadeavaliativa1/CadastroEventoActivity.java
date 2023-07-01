@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.room.Room;
-import androidx.room.RoomDatabase;
 
 import com.example.atividadeavaliativa1.data.Evento;
 import com.example.atividadeavaliativa1.data.EventoDAO;
@@ -55,7 +54,7 @@ public class CadastroEventoActivity extends Activity {
 
         // Validar se todos os campos foram preenchidos
         if (nomeEvento.isEmpty() || dataEvento.isEmpty() || localizacaoEvento.isEmpty() || descricaoEvento.isEmpty()) {
-            Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "@string/fill_incomplete!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -69,13 +68,13 @@ public class CadastroEventoActivity extends Activity {
         // Inserir o evento no banco de dados usando o EventoDao
         eventoDao.inserirEvento(evento);
 
-        Toast.makeText(this, "Evento cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "@string/register_event_sucess", Toast.LENGTH_SHORT).show();
 
 
         // Limpar os campos após o cadastro
-        et_eventoNome.setText("");
+        et_eventoNome.setText("@string/tile_event");
         et_eventoData.setText("");
-        et_eventoEndereco.setText("");
-        et_eventoDescricao.setText("");
+        et_eventoEndereco.setText("@string/location");
+        et_eventoDescricao.setText("@string/description");
     }
 }

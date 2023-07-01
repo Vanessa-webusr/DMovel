@@ -15,6 +15,16 @@ public class Evento {
 
     // Construtor, getters e setters
 
+    public Evento(String nomeEvento, String dataEvento, String localizacaoEvento, String descricaoEvento) {
+        this.nomeEvento = nomeEvento;
+        this.dataEvento = dataEvento;
+        this.localizacaoEvento = localizacaoEvento;
+        this.descricaoEvento = descricaoEvento;
+    }
+
+    public Evento(){
+
+    }
     public int getId() {
         return id;
     }

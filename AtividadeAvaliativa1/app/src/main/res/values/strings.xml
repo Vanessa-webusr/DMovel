@@ -28,6 +28,8 @@
     <string name="month">Month</string>
     <string name="hour_event">00:00</string>
     <string name="title_event">Event Title</string>
-    <string name="define_hour_event">Set TIme</string>
+    <string name="define_hour_event">Set Time</string>
     <string name="description_event">Event Description</string>
+    <string name="register_event_sucess">Event registered successfully!</string>
+    <string name="fill_incomplete">Fill all the fields!</string>
 </resources>

@@ -31,4 +31,6 @@
     <string name="title_event">Título do Evento</string>
     <string name="define_hour_event">Definir Horário</string>
     <string name="description_event">Descrição do evento</string>
+    <string name="register_event_sucess">Evento cadastrado com sucesso!</string>
+    <string name="fill_incomplete">Preencha todos os campos!</string>
 </resources>
