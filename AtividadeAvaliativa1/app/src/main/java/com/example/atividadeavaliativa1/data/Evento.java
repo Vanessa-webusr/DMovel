@@ -1,0 +1,57 @@
+package com.example.atividadeavaliativa1.data;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "eventos")
+public class Evento {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    private String nomeEvento;
+    private String dataEvento;
+    private String localizacaoEvento;
+    private String descricaoEvento;
+
+    // Construtor, getters e setters
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNomeEvento() {
+        return nomeEvento;
+    }
+
+    public void setNomeEvento(String nomeEvento) {
+        this.nomeEvento = nomeEvento;
+    }
+
+    public String getDataEvento() {
+        return dataEvento;
+    }
+
+    public void setDataEvento(String dataEvento) {
+        this.dataEvento = dataEvento;
+    }
+
+    public String getLocalizacaoEvento() {
+        return localizacaoEvento;
+    }
+
+    public void setLocalizacaoEvento(String localizacaoEvento) {
+        this.localizacaoEvento = localizacaoEvento;
+    }
+
+    public String getDescricaoEvento() {
+        return descricaoEvento;
+    }
+
+    public void setDescricaoEvento(String descricaoEvento) {
+        this.descricaoEvento = descricaoEvento;
+    }
+}
