@@ -17,9 +17,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="167dp"
-        tools:text="Definir Horário"
-        tools:ignore="MissingConstraints" />
+        tools:text="@string/define_hour_event" />
 
     <EditText
         android:id="@+id/et_eventoNome"
@@ -36,7 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:text="Título do evento" />
+        tools:text="@string/title_event" />
 
     <EditText
         android:id="@+id/et_eventoEndereco"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iconLocal"
         app:layout_constraintTop_toBottomOf="@+id/et_eventoData"
-        tools:text="Localização" />
+        tools:text="@string/location" />
 
     <Button
         android:id="@+id/btn_cadastroEvento"
@@ -57,7 +57,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginBottom="26dp"
         android:background="@color/black"
-        android:text="@string/salvar"
+        android:text="@string/save"
         app:layout_constraintBottom_toTopOf="@+id/et_eventoNome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -69,7 +69,7 @@
         android:id="@+id/iconLocal"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:contentDescription="@string/iconlocal"
+        android:contentDescription="@string/icon_location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iconHorario"
         app:srcCompat="@drawable/icons8_map_50" />
@@ -78,7 +78,7 @@
         android:id="@+id/iconHorario"
         android:layout_width="45dp"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/iconhorario"
+        android:contentDescription="@string/icon_hour"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iconTitulo"
         app:srcCompat="@drawable/icons8_rel_gio_48" />
@@ -88,7 +88,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="122dp"
-        android:contentDescription="@string/icontitulo"
+        android:contentDescription="@string/icon_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icons8_t_tulo_50" />
@@ -97,7 +97,7 @@
         android:id="@+id/iconDescricao"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:contentDescription="@string/descricao"
+        android:contentDescription="@string/description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iconLocal"
@@ -108,6 +108,7 @@
         android:id="@+id/et_eventoDescricao"
         android:layout_width="365dp"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
@@ -116,8 +117,7 @@
         app:layout_constraintStart_toEndOf="@+id/iconDescricao"
         app:layout_constraintTop_toBottomOf="@+id/et_eventoEndereco"
         app:layout_constraintVertical_bias="0.0"
-        tools:text="Descrição"
-        android:autofillHints="" />
+        tools:text="@string/description" />
 
     <ImageView
         android:id="@+id/fecharCadastroEvento"
@@ -126,7 +126,7 @@
         android:layout_marginStart="7dp"
         android:layout_marginEnd="265dp"
         android:layout_marginBottom="63dp"
-        android:contentDescription="@string/fecharCadastroEvento"
+        android:contentDescription="@string/close_event_register"
         android:src="@android:drawable/ic_menu_close_clear_cancel"
         app:layout_constraintBottom_toTopOf="@+id/iconTitulo"
         app:layout_constraintEnd_toStartOf="@+id/btn_cadastroEvento"
