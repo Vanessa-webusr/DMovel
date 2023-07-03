@@ -1,5 +1,6 @@
 package com.example.atividadeavaliativa1.data;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -8,12 +9,19 @@ public class Evento {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    @ColumnInfo(name = "nomeEvento")
     private String nomeEvento;
+
+    @ColumnInfo(name = "dataEvento")
     private String dataEvento;
+
+    @ColumnInfo(name = "localizacaoEvento")
     private String localizacaoEvento;
+
+    @ColumnInfo(name = "descricaoEvento")
     private String descricaoEvento;
 
-    // Construtor, getters e setters
+    // Constructor, getters e setters
 
     public Evento(String nomeEvento, String dataEvento, String localizacaoEvento, String descricaoEvento) {
         this.nomeEvento = nomeEvento;
