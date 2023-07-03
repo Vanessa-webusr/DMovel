@@ -1,23 +1,35 @@
 package com.example.atividadeavaliativa1.data;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "eventos")
+@Entity(tableName = "evento")
 public class Evento {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    @ColumnInfo(name = "nomeEvento")
     private String nomeEvento;
+
+    @ColumnInfo(name = "dataEvento")
     private String dataEvento;
+
+    @ColumnInfo(name = "horaEvento")
+    private String horaEvento;
+
+    @ColumnInfo(name = "localizacaoEvento")
     private String localizacaoEvento;
+
+    @ColumnInfo(name = "descricaoEvento")
     private String descricaoEvento;
 
     // Construtor, getters e setters
 
-    public Evento(String nomeEvento, String dataEvento, String localizacaoEvento, String descricaoEvento) {
+    public Evento(String nomeEvento, String dataEvento, String horaEvento, String localizacaoEvento, String descricaoEvento) {
         this.nomeEvento = nomeEvento;
         this.dataEvento = dataEvento;
+        this.horaEvento = horaEvento;
         this.localizacaoEvento = localizacaoEvento;
         this.descricaoEvento = descricaoEvento;
     }
@@ -47,6 +59,14 @@ public class Evento {
 
     public void setDataEvento(String dataEvento) {
         this.dataEvento = dataEvento;
+    }
+
+    public String getHoraEvento() {
+        return horaEvento;
+    }
+
+    public void setHoraEvento(String horaEvento) {
+        this.horaEvento = horaEvento;
     }
 
     public String getLocalizacaoEvento() {
