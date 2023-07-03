@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "eventos")
+@Entity(tableName = "evento")
 public class Evento {
     @PrimaryKey(autoGenerate = true)
     private int id;
