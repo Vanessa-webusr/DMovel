@@ -1,6 +1,7 @@
 package com.example.atividadeavaliativa1.ui.notifications;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.atividadeavaliativa1.databinding.FragmentNotificationsBinding;
 
@@ -16,7 +20,7 @@ public class NotificationsFragment extends Fragment {
 
     private FragmentNotificationsBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         NotificationsViewModel notificationsViewModel =
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
@@ -27,6 +31,12 @@ public class NotificationsFragment extends Fragment {
         final TextView textView = binding.textNotifications;
         notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
+    }
+
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d("TicketsFragment", "onViewCreated");
+
     }
 
     @Override

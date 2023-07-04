@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AtividadeAvaliativa1</string>
     <string name="title_home">Home</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_tickets">Tickets</string>
     <string name="title_profile">Profile</string>
     <string name="title_chat">Chat</string>
     <string name="title_map">Map</string>
@@ -32,8 +32,10 @@
     <string name="description_event">Event Description</string>
     <string name="register_event_sucess">Event registered successfully!</string>
     <string name="fill_incomplete">Fill all the fields!</string>
-    <string name="user_name">Usename</string>
+    <string name="user_name">Username</string>
     <string name="config">Settings</string>
-    <string name="ticket">My tickets</string>
+    <string name="my_tickets">My tickets</string>
     <string name="personal_data">Personal data</string>
+    <string name="login">Login</string>
+    <string name="logout">Log out</string>
 </resources>

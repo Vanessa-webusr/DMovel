@@ -24,13 +24,8 @@
         tools:layout="@layout/fragment_perfil" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_tickets"
         android:name="com.example.atividadeavaliativa1.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_tickets"
         tools:layout="@layout/fragment_notifications" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.atividadeavaliativa1.ui.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
 </navigation>

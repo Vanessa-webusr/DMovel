@@ -2,12 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/navigation_login"
+        android:title="@string/login" />
+    <item
+        android:id="@+id/navigation_tickets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/icons8_two_tickets_50"
+        android:title="@string/title_tickets"
+        android:onClick="onMenuProfileOptionsItemSelected"/>
+    <item
+        android:id="@+id/navigation_settings"
         android:icon="@drawable/icons8_config_50"
         android:title="@string/config" />
     <item
-        android:icon="@drawable/icons8_two_tickets_50"
-        android:title="@string/ticket" />
-    <item
+        android:id="@+id/navigation_person"
         android:icon="@drawable/icons8_personal_data_64"
         android:title="@string/personal_data" />
 </menu>

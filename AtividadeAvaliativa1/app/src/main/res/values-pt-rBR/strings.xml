@@ -2,7 +2,10 @@
 <resources>
     <string name="app_name">AtividadeAvaliativa1</string>
     <string name="title_home">Início</string>
-    <string name="title_notifications">Notificações</string>
+    <string name="user_name">Nome de usuário</string>
+    <string name="config">Configurações</string>
+    <string name="personal_data">Dados pessoais</string>
+    <string name="title_tickets">Ingressos</string>
     <string name="title_profile">Perfil</string>
     <string name="title_chat">Diálogo</string>
     <string name="title_map">Mapa</string>
@@ -33,4 +36,7 @@
     <string name="description_event">Descrição do evento</string>
     <string name="register_event_sucess">Evento cadastrado com sucesso!</string>
     <string name="fill_incomplete">Preencha todos os campos!</string>
+    <string name="my_tickets">Meus ingressos</string>
+    <string name="login">Entrar</string>
+    <string name="logout">Sair</string>
 </resources>
