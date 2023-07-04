@@ -36,4 +36,8 @@
     <string name="config">Settings</string>
     <string name="ticket">My tickets</string>
     <string name="personal_data">Personal data</string>
+
+    <string name="title_ticket">Ticket</string>
+    <string name="purchase_ticket">Ticket purchased for the event: </string>
+
 </resources>

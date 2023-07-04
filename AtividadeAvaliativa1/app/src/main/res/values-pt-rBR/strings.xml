@@ -33,4 +33,7 @@
     <string name="description_event">Descrição do evento</string>
     <string name="register_event_sucess">Evento cadastrado com sucesso!</string>
     <string name="fill_incomplete">Preencha todos os campos!</string>
+
+    <string name="title_ticket">Ingressos</string>
+    <string name="purchase_ticket">Ingresso comprado para o evento: </string>
 </resources>

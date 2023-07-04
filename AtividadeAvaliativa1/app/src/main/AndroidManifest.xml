@@ -17,7 +17,7 @@
         android:theme="@style/Theme.AtividadeAvaliativa1"
         tools:targetApi="31">
         <activity
-            android:name="CadastroEventoActivity"
+            android:name=".ui.ticket.CompraIngresso"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
