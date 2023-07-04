@@ -13,6 +13,8 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:windowSplashScreenBackground">@color/red_entrada</item>
+
+
         <!--<item name="android:windowSplashScreenBackground">@drawable/entrada</item>-->
         <!--<item name="android:windowSplashScreenAnimationDuration">1000</item>-->
     </style>

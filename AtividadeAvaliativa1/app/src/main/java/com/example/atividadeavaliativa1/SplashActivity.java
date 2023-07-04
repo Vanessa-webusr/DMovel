@@ -18,7 +18,7 @@ public class SplashActivity extends AppCompatActivity {
         pref = getSharedPreferences("user_info",MODE_PRIVATE);
         boolean isUserLogged = pref.getBoolean("user_logged", false);
 
-        startActivity(new Intent(this, isUserLogged ? MainActivity.class : MainActivity.class));
+        startActivity(new Intent(this, isUserLogged ? MainActivity.class : com.example.atividadeavaliativa1.user.ActivityCadastroLogin.class));
         finish();
     }
 }

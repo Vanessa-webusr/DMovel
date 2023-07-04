@@ -28,4 +28,14 @@
         android:name="com.example.atividadeavaliativa1.ui.notifications.NotificationsFragment"
         android:label="@string/title_tickets"
         tools:layout="@layout/fragment_notifications" />
+    <activity
+        android:id="@+id/activity_cadastro"
+        android:name="com.example.atividadeavaliativa1.user.Activity_cadastro"
+        android:label="activity_cadastro"
+        tools:layout="@layout/activity_cadastro" />
+    <activity
+        android:id="@+id/activity_login"
+        android:name="com.example.atividadeavaliativa1.user.Activity_login"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 </navigation>
