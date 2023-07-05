@@ -54,7 +54,7 @@ public class CadastroEventoActivity extends Activity {
 
         // Validar se todos os campos foram preenchidos
         if (nomeEvento.isEmpty() || dataEvento.isEmpty() || localizacaoEvento.isEmpty() || descricaoEvento.isEmpty()) {
-            Toast.makeText(this, "@string/fill_incomplete!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.fill_incomplete), Toast.LENGTH_SHORT).show(); //TODO: Como pegar strings do arquivo de strings
             return;
         }
 
@@ -68,14 +68,14 @@ public class CadastroEventoActivity extends Activity {
         // Inserir o evento no banco de dados usando o EventoDao
         eventoDao.inserirEvento(evento);
 
-        Toast.makeText(this, "@string/register_event_sucess", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.register_event_sucess), Toast.LENGTH_SHORT).show();
 
 
         // Limpar os campos após o cadastro
-        et_eventoNome.setText("@string/tile_event");
+        et_eventoNome.setText(getResources().getString(R.string.title_event));
         et_eventoData.setText("");
-        et_eventoEndereco.setText("@string/location");
-        et_eventoDescricao.setText("@string/description");
+        et_eventoEndereco.setText(getResources().getString(R.string.location));
+        et_eventoDescricao.setText(getResources().getString(R.string.description));
     }
 
     public void fecharCadastro(View v){

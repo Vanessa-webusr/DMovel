@@ -14,7 +14,7 @@
         android:drawableLeft="@drawable/icons8_rel_gio_48"
         android:ems="10"
         android:hint="@string/define_hour_event"
-        android:inputType="datetime|time"
+        android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

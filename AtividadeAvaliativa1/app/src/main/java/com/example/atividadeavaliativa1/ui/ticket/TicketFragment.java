@@ -67,13 +67,13 @@ public class TicketFragment extends Fragment {
         //listView = listView.findViewById(R.id.listViewTicket);
 
         // Inicializar a lista de itens
-        /*ticketList = new ArrayList<>();
+        //ticketList = new ArrayList<>();
 
         // Popula a lista de eventos do banco de dados
-        populateTicketList();
+        //populateTicketList();
 
         // Configura o adaptador do ListView
-        adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, ticketList);
+        /*adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, ticketList);
         listView.setAdapter(adapter);*/
 
 

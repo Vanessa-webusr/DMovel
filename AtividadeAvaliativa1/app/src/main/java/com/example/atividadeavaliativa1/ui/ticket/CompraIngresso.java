@@ -14,6 +14,7 @@ import com.example.atividadeavaliativa1.R;
 import com.example.atividadeavaliativa1.data.Evento;
 import com.example.atividadeavaliativa1.data.EventoDAO;
 import com.example.atividadeavaliativa1.data.ticket.Ticket;
+import com.example.atividadeavaliativa1.data.ticket.TicketDAO;
 import com.example.atividadeavaliativa1.databinding.ActivityCompraIngressoBinding;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class CompraIngresso extends AppCompatActivity {
     private ActivityCompraIngressoBinding binding;
 
     private EventoDAO dao;
+    private TicketDAO ticketDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,7 @@ public class CompraIngresso extends AppCompatActivity {
                 ticket.setDataEventoIngresso(selectedEvento.getDataEvento());
                 ticket.setNomePessoa("AquiTemQuePuxarDoLoginMasNaoAchei");
                 ticket.setNomeEventoIngresso(selectedEvento.getNomeEvento());
-                comprarEvento(selectedEvento);
+                comprarEvento(ticket);
             }
         });
     }
@@ -74,10 +76,11 @@ public class CompraIngresso extends AppCompatActivity {
         }
     }
 
-    // Método para processar a compra de um item
-    private void comprarEvento(Evento evento) {
 
-        Toast.makeText(this, "@string/purchase_ticket", Toast.LENGTH_SHORT).show();
+    // Método para processar a compra de um item
+    private void comprarEvento(Ticket ticket) {
+        ticketDAO.inserirTicket(ticket);
+        Toast.makeText(this, getResources().getString(R.string.purchase_ticket), Toast.LENGTH_SHORT).show();
     }
 
     public void fecharTela(View v){
