@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.example.atividadeavaliativa1.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_cadastroEventoActivity"
+            app:destination="@id/cadastroEventoActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_map"
@@ -23,11 +27,6 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_perfil" />
 
-    <fragment
-        android:id="@+id/navigation_tickets"
-        android:name="com.example.atividadeavaliativa1.ui.notifications.NotificationsFragment"
-        android:label="@string/title_tickets"
-        tools:layout="@layout/fragment_notifications" />
     <activity
         android:id="@+id/activity_cadastro"
         android:name="com.example.atividadeavaliativa1.user.Activity_cadastro"
@@ -38,4 +37,23 @@
         android:name="com.example.atividadeavaliativa1.user.Activity_login"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/navigation_ticket"
+        android:name="com.example.atividadeavaliativa1.ui.ticket.TicketFragment"
+        android:label="fragment_ticket"
+        tools:layout="@layout/fragment_ticket" >
+        <action
+            android:id="@+id/action_navigation_ticket_to_compraIngresso"
+            app:destination="@id/compraIngresso" />
+    </fragment>
+    <activity
+        android:id="@+id/compraIngresso"
+        android:name="com.example.atividadeavaliativa1.ui.ticket.CompraIngresso"
+        android:label="activity_compra_ingresso"
+        tools:layout="@layout/activity_compra_ingresso" />
+    <activity
+        android:id="@+id/cadastroEventoActivity"
+        android:name="com.example.atividadeavaliativa1.CadastroEventoActivity"
+        android:label="activity_cadastro_evento"
+        tools:layout="@layout/activity_cadastro_evento" />
 </navigation>

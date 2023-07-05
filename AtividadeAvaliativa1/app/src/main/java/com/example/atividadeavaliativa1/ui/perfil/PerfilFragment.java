@@ -67,31 +67,4 @@ public class PerfilFragment extends Fragment {
         binding = null;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        Log.d("FirstFragment", "onStart");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        Log.d("FirstFragment", "onResume");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        Log.d("FirstFragment", "onPause");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        Log.d("FirstFragment", "onStop");
-    }
 }

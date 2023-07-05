@@ -77,4 +77,8 @@ public class CadastroEventoActivity extends Activity {
         et_eventoEndereco.setText("@string/location");
         et_eventoDescricao.setText("@string/description");
     }
+
+    public void fecharCadastro(View v){
+        this.finish();
+    }
 }

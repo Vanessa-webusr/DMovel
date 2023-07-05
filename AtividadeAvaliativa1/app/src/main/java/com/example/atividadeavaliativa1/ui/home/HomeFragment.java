@@ -13,12 +13,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.atividadeavaliativa1.CadastroEventoActivity;
 import com.example.atividadeavaliativa1.MainActivity;
 import com.example.atividadeavaliativa1.R;
 import com.example.atividadeavaliativa1.databinding.FragmentHomeBinding;
+import com.example.atividadeavaliativa1.ui.ticket.TicketFragment;
 
 import java.util.Calendar;
 
@@ -75,6 +77,14 @@ public class HomeFragment extends Fragment {
                     currentMonthIndex = 0;
                 }
                 updateMonthTextView();
+            }
+        });
+
+        binding.buttonEvento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(HomeFragment.this)
+                        .navigate(R.id.action_navigation_home_to_cadastroEventoActivity);
             }
         });
 

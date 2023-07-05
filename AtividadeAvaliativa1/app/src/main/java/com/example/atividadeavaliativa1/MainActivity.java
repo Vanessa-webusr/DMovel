@@ -1,30 +1,19 @@
 package com.example.atividadeavaliativa1;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.example.atividadeavaliativa1.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.atividadeavaliativa1.databinding.ActivityMainBinding;
-import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -42,7 +31,7 @@ public class MainActivity extends AppCompatActivity{
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_map, R.id.navigation_tickets, R.id.navigation_chat, R.id.navigation_profile)
+                R.id.navigation_home, R.id.navigation_map, R.id.navigation_ticket, R.id.navigation_chat, R.id.navigation_profile)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -75,10 +64,10 @@ public class MainActivity extends AppCompatActivity{
                 navController.navigate(R.id.navigation_home);
             return true;
         }
-        else if(id == R.id.navigation_tickets) {
+        else if(id == R.id.navigation_ticket) {
             NavController navController = Navigation
                     .findNavController(this, R.id.nav_host_fragment_activity_main);
-            navController.navigate(R.id.navigation_tickets);
+            navController.navigate(R.id.navigation_ticket);
 
             return true;
         }
@@ -103,10 +92,10 @@ public class MainActivity extends AppCompatActivity{
     //Navegação entre os fragments do menu do perfil
     public boolean onMenuProfileOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.navigation_tickets) {
+        if (id == R.id.navigation_ticket) {
             NavController navController = Navigation
                     .findNavController(this, R.id.nav_host_fragment_activity_main);
-            navController.navigate(R.id.navigation_tickets);
+            navController.navigate(R.id.navigation_ticket);
             return true;
         }
 

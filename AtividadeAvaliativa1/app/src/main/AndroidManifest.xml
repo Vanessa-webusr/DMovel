@@ -65,6 +65,10 @@
         </activity>
 
         <activity
+            android:name=".ui.ticket.CompraIngresso"
+            android:exported="true" />
+
+        <activity
             android:name=".user.Activity_cadastro"
             android:exported="true"
             android:label="@string/app_name"
@@ -73,6 +77,13 @@
 
         <activity
             android:name=".user.Activity_login"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AtividadeAvaliativa1">
+        </activity>
+
+        <activity
+            android:name=".CadastroEventoActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AtividadeAvaliativa1">

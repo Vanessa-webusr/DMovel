@@ -64,4 +64,6 @@
     <string name="november">Novembro</string>
     <string name="december">Dezembro</string>
     <string name="search_here">Pesquise aqui...</string>
+    <string name="title_ticket">Ingressos</string>
+    <string name="purchase_ticket">Ingresso comprado para o evento: </string>
 </resources>

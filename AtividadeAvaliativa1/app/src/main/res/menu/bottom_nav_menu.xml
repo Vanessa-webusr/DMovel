@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:context="com.example.atividadeavaliativa1.MainActivity">
 
+
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/icons8_home_50"
@@ -15,14 +16,10 @@
         android:title="@string/title_map"
         android:onClick="onMenuOptionsItemSelected"/>
 
-    <item
-        android:id="@+id/navigation_tickets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <item  android:id="@+id/navigation_ticket"
         android:icon="@drawable/icons8_two_tickets_50"
         android:title="@string/title_tickets"
         android:onClick="onMenuOptionsItemSelected"/>
-
 
     <item
         android:id="@+id/navigation_chat"
