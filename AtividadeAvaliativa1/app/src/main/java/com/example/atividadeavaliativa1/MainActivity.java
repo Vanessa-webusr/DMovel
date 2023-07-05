@@ -5,10 +5,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.atividadeavaliativa1.ui.home.HomeFragment;
+import com.example.atividadeavaliativa1.user.UserDao;
+import com.example.atividadeavaliativa1.user.UserDatabase;
+import com.example.atividadeavaliativa1.user.UserEntity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -50,12 +55,12 @@ public class MainActivity extends AppCompatActivity{
 
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
         return true;
     }
-
 
     //Navegação entre os fragments do menu principal
     public boolean onMenuOptionsItemSelected(MenuItem item) {

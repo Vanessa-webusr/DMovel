@@ -22,7 +22,7 @@
         android:id="@+id/name"
         android:layout_width="260dp"
         android:layout_height="48dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="160dp"
         android:layout_marginEnd="76dp"
         android:drawableLeft="@drawable/baseline_person_outline_24"
         android:ems="10"
@@ -69,18 +69,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginEnd="148dp"
-        android:layout_marginBottom="308dp"
-        android:onClick="btnLogin"
-        android:text="@string/have_account"
-        android:textAllCaps="true"
+        android:layout_width="260dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="76dp"
+        android:backgroundTint="@color/white"
+        android:text="@string/login"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:iconTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.588" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
