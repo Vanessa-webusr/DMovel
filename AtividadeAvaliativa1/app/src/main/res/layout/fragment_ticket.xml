@@ -32,13 +32,13 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_ticket"
-        android:layout_width="56dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="72dp"
         android:adjustViewBounds="false"
         android:clickable="true"
-        android:src="@drawable/icons8_mais_50"
+        android:src="@android:drawable/ic_input_add"
         app:backgroundTint="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -65,4 +65,5 @@
     <string name="search_here">Search here...</string>
     <string name="title_ticket">Ticket</string>
     <string name="purchase_ticket">Ticket purchased for the event: </string>
+    <string name="define_date_event">Set Date</string>
 </resources>
