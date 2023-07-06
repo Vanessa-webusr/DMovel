@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import com.example.atividadeavaliativa1.MainActivity;
 import com.example.atividadeavaliativa1.R;
 import com.example.atividadeavaliativa1.ui.home.HomeFragment;
 
@@ -49,10 +49,8 @@ public class Activity_login extends AppCompatActivity {
                                     }
                                 });
                             } else {
-                               String home = userEntity.name;
                                startActivity(new Intent(
-                                       Activity_login.this, HomeFragment.class)
-                                       .putExtra("home", home));
+                                       Activity_login.this, MainActivity.class));
                             }
                         }
                     }).start();

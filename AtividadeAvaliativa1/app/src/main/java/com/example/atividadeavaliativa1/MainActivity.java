@@ -39,12 +39,12 @@ public class MainActivity extends AppCompatActivity{
 
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
         return true;
     }
-
 
     //Navegação entre os fragments do menu principal
     public boolean onMenuOptionsItemSelected(MenuItem item) {

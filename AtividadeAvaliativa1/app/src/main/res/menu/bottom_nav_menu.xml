@@ -16,10 +16,11 @@
         android:title="@string/title_map"
         android:onClick="onMenuOptionsItemSelected"/>
 
-    <item  android:id="@+id/navigation_ticket"
+    <item
+        android:id="@+id/navigation_ticket"
         android:icon="@drawable/icons8_two_tickets_50"
-        android:title="@string/title_tickets"
-        android:onClick="onMenuOptionsItemSelected"/>
+        android:onClick="onMenuOptionsItemSelected"
+        android:title="@string/title_tickets" />
 
     <item
         android:id="@+id/navigation_chat"

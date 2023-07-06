@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/textView_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/title_ticket"
             android:textAlignment="center"
@@ -35,7 +35,7 @@
         android:layout_width="56dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="48dp"
         android:adjustViewBounds="false"
         android:clickable="true"
         android:src="@drawable/icons8_mais_50"

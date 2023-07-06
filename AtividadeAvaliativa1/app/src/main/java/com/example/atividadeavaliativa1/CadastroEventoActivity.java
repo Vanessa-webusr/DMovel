@@ -73,7 +73,7 @@ public class CadastroEventoActivity extends Activity {
 
         // Limpar os campos após o cadastro
         et_eventoNome.setText(getResources().getString(R.string.title_event));
-        et_eventoData.setText("");
+        et_eventoData.setText("__/__/____");
         et_eventoEndereco.setText(getResources().getString(R.string.location));
         et_eventoDescricao.setText(getResources().getString(R.string.description));
     }

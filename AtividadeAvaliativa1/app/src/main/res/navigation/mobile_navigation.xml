@@ -40,8 +40,8 @@
     <fragment
         android:id="@+id/navigation_ticket"
         android:name="com.example.atividadeavaliativa1.ui.ticket.TicketFragment"
-        android:label="fragment_ticket"
-        tools:layout="@layout/fragment_ticket" >
+        android:label="@string/title_ticket"
+        tools:layout="@layout/fragment_ticket">
         <action
             android:id="@+id/action_navigation_ticket_to_compraIngresso"
             app:destination="@id/compraIngresso" />
