@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AtividadeAvaliativa1</string>
+    <string name="app_name">Eventos</string>
     <string name="title_home">Início</string>
     <string name="user_name">Nome de usuário</string>
     <string name="config">Configurações</string>
@@ -66,4 +66,5 @@
     <string name="search_here">Pesquise aqui...</string>
     <string name="title_ticket">Ingressos</string>
     <string name="purchase_ticket">Ingresso comprado para o evento: </string>
+    <string name="define_date_event">Definir data</string>
 </resources>
