@@ -17,7 +17,7 @@ public abstract class TicketDatabase extends RoomDatabase {
             synchronized (TicketDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    TicketDatabase.class, "ingresso.db")
+                                    TicketDatabase.class, "dmovel.db")
                             .build();
                 }
             }

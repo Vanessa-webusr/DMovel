@@ -17,7 +17,7 @@ public abstract class EventoDatabase extends RoomDatabase {
             synchronized (EventoDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    EventoDatabase.class, "evento.db")
+                                    EventoDatabase.class, "dmovel.db")
                             .build();
                 }
             }
