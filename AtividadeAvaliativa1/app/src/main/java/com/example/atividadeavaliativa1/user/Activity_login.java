@@ -2,7 +2,9 @@ package com.example.atividadeavaliativa1.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +19,14 @@ public class Activity_login extends AppCompatActivity {
     EditText userId, password;
     Button login;
 
+    public static String USER_FILE_NAME = "user_file";
+
+    public static final String usernameFin = "username";
+    public static final String passwordFin = "password";
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +35,7 @@ public class Activity_login extends AppCompatActivity {
         userId = findViewById(R.id.userId);
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
+        SharedPreferences preferences = getSharedPreferences(USER_FILE_NAME, Context.MODE_PRIVATE);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +60,14 @@ public class Activity_login extends AppCompatActivity {
                                     }
                                 });
                             } else {
-                               startActivity(new Intent(
+
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("name", userEntity.getName());
+                                editor.putString("email", userEntity.getUserId());
+                                editor.putString("password", userEntity.getPassword());
+                                editor.commit();
+                                editor.apply();
+                                startActivity(new Intent(
                                        Activity_login.this, MainActivity.class));
                             }
                         }
