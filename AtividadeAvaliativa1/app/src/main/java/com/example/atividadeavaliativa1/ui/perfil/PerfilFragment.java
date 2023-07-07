@@ -2,6 +2,10 @@ package com.example.atividadeavaliativa1.ui.perfil;
 
 
 
+import static com.example.atividadeavaliativa1.user.Activity_login.USER_FILE_NAME;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -43,19 +47,18 @@ public class PerfilFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /*binding.ticketsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(PerfilFragment.this)
-                        .navigate(R.id.action_navigation_profile_to_navigation_tickets);
-            }
-        });*/
 
         NavController navController = Navigation.findNavController(view);
         //AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         //NavigationView navigationView = view.findViewById(R.id.list_nav);
         NavigationUI.setupWithNavController(binding.listNav, navController);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences(USER_FILE_NAME, Context.MODE_PRIVATE);
+        String display = preferences.getString("name", "");
+        final TextView textView = binding.textPerfil;
+        textView.setText(display);
 
+
+      //  perfilViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
     }
 
 
