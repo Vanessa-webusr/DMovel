@@ -33,7 +33,7 @@
     <string name="user_name">Username</string>
     <string name="config">Settings</string>
     <string name="my_tickets">My tickets</string>
-    <string name="personal_data">Personal data</string>
+    <string name="personal_data">My data</string>
     <string name="login">Login</string>
     <string name="logout">Log out</string>
     <string name="free_account">Create your free account</string>
