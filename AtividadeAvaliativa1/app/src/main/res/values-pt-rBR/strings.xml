@@ -65,6 +65,10 @@
     <string name="december">Dezembro</string>
     <string name="search_here">Pesquise aqui...</string>
     <string name="title_ticket">Ingressos</string>
-    <string name="purchase_ticket">Ingresso comprado para o evento: </string>
+    <string name="purchase_ticket">Deseja comprar um ingresso para esse evento?</string>
     <string name="define_date_event">Definir data</string>
+    <string name="purchase_ticket_success">Ingresso comprado para o evento: </string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+
 </resources>

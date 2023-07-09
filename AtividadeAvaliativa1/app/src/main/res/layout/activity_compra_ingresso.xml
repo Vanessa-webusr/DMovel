@@ -12,12 +12,10 @@
         android:orientation="vertical"
         tools:context=".ui.ticket.CompraIngresso">
 
-        <ListView
-            android:id="@+id/listView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/eventoRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="666dp">
-
-        </ListView>
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/button_voltar_compraIngresso"

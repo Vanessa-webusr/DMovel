@@ -64,6 +64,10 @@
     <string name="december">December</string>
     <string name="search_here">Search here...</string>
     <string name="title_ticket">Ticket</string>
-    <string name="purchase_ticket">Ticket purchased for the event: </string>
+    <string name="purchase_ticket_success">Ticket purchased for the event: </string>
     <string name="define_date_event">Set Date</string>
+    <string name="purchase_ticket">Do you want to buy a ticket for this event?
+</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
