@@ -16,8 +16,6 @@
         android:layout_marginBottom="63dp"
         android:contentDescription="@string/close_event_register"
         android:src="@android:drawable/ic_menu_close_clear_cancel"
-        app:layout_constraintBottom_toTopOf="@+id/iconTitulo"
-        app:layout_constraintEnd_toStartOf="@+id/btn_cadastroEvento"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />

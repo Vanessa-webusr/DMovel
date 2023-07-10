@@ -17,8 +17,11 @@ public class CadastroEventoActivity extends Activity {
 
     private EditText et_eventoNome;
     private EditText et_eventoData;
+    private EditText et_eventoTime;
     private EditText et_eventoEndereco;
     private EditText et_eventoDescricao;
+    private EditText et_eventoContact;
+    private EditText et_eventoContactName;
     private Button btn_cadastroEvento;
     private EventoDAO eventoDao;
 
@@ -30,9 +33,12 @@ public class CadastroEventoActivity extends Activity {
         // Inicialização dos componentes de UI
         et_eventoNome = findViewById(R.id.et_eventoNome);
         et_eventoData = findViewById(R.id.et_eventoData);
+        et_eventoTime = findViewById(R.id.et_eventoHora);
         et_eventoEndereco = findViewById(R.id.et_eventoEndereco);
         et_eventoDescricao = findViewById(R.id.et_eventoDescricao);
         btn_cadastroEvento = findViewById(R.id.btn_cadastroEvento);
+        et_eventoContact = findViewById(R.id.et_eventoContact);
+        et_eventoContactName = findViewById(R.id.et_eventoContactName);
 
         // Criação do banco de dados do Room
         EventoDatabase db = Room.databaseBuilder(getApplicationContext(), EventoDatabase.class, "eventos-db").build();
@@ -49,8 +55,11 @@ public class CadastroEventoActivity extends Activity {
     private void cadastrarEvento() {
         String nomeEvento = et_eventoNome.getText().toString().trim();
         String dataEvento = et_eventoData.getText().toString().trim();
+        String horaEvento = et_eventoTime.getText().toString().trim();
         String localizacaoEvento = et_eventoEndereco.getText().toString().trim();
         String descricaoEvento = et_eventoDescricao.getText().toString().trim();
+        String contatoEvento = et_eventoContact.getText().toString().trim();
+        String nomeContatoEvento = et_eventoContactName.getText().toString().trim();
 
         // Validar se todos os campos foram preenchidos
         if (nomeEvento.isEmpty() || dataEvento.isEmpty() || localizacaoEvento.isEmpty() || descricaoEvento.isEmpty()) {
@@ -62,8 +71,11 @@ public class CadastroEventoActivity extends Activity {
         Evento evento = new Evento();
         evento.setNomeEvento(nomeEvento);
         evento.setDataEvento(dataEvento);
+        evento.setHoraEvento(horaEvento);
         evento.setLocalizacaoEvento(localizacaoEvento);
         evento.setDescricaoEvento(descricaoEvento);
+        evento.setContatoEvento(contatoEvento);
+        evento.setNomeContatoEvento(nomeContatoEvento);
 
         // Inserir o evento no banco de dados usando o EventoDao
         eventoDao.inserirEvento(evento);
@@ -74,8 +86,11 @@ public class CadastroEventoActivity extends Activity {
         // Limpar os campos após o cadastro
         et_eventoNome.setText(getResources().getString(R.string.title_event));
         et_eventoData.setText("__/__/____");
+        et_eventoContact.setText("12:00");
         et_eventoEndereco.setText(getResources().getString(R.string.location));
         et_eventoDescricao.setText(getResources().getString(R.string.description));
+        et_eventoContact.setText(getResources().getString(R.string.contact));
+        et_eventoContactName.setText(getResources().getString(R.string.nameCont));
     }
 
     public void fecharCadastro(View v){

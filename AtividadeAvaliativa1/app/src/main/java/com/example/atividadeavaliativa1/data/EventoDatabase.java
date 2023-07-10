@@ -5,6 +5,9 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.atividadeavaliativa1.user.UserDao;
+import com.example.atividadeavaliativa1.user.UserEntity;
+
 @Database(entities = {Evento.class}, version = 1)
 public abstract class EventoDatabase extends RoomDatabase {
 
@@ -12,7 +15,7 @@ public abstract class EventoDatabase extends RoomDatabase {
 
     public abstract EventoDAO eventoDAO();
 
-    public static EventoDatabase getInstance(Context context) {
+    public static synchronized EventoDatabase getInstance(Context context) {
         if (INSTANCE == null) {
             synchronized (EventoDatabase.class) {
                 if (INSTANCE == null) {

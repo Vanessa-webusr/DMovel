@@ -34,8 +34,8 @@
     <string name="config">Settings</string>
     <string name="my_tickets">My tickets</string>
     <string name="personal_data">My data</string>
-    <string name="login">Login</string>
-    <string name="logout">Log out</string>
+    <string name="login">LOGIN</string>
+    <string name="logout">LOG OUT</string>
     <string name="free_account">Create your free account</string>
     <string name="have_account">I ALREADY HAVE AN ACCOUNT</string>
     <string name="join_community">join our community</string>
@@ -64,6 +64,11 @@
     <string name="december">December</string>
     <string name="search_here">Search here...</string>
     <string name="title_ticket">Ticket</string>
-    <string name="purchase_ticket">Ticket purchased for the event: </string>
+    <string name="purchase_ticket_success">Ticket purchased for the event: </string>
     <string name="define_date_event">Set Date</string>
+    <string name="contact">Contact: phone number or email</string>
+    <string name="nameCont">Contact name</string>
+    <string name="purchase_ticket">Do you want to buy a ticket for this event?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

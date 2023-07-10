@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.atividadeavaliativa1.MainActivity;
 import com.example.atividadeavaliativa1.R;
 import com.example.atividadeavaliativa1.databinding.ActivityCadastroLoginBinding;
 
@@ -16,7 +19,9 @@ public class Activity_cadastro extends AppCompatActivity {
 
     EditText userId, password, name;
     Button register;
-    Button login;
+    TextView login;
+
+    ImageView btnClose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,7 @@ public class Activity_cadastro extends AppCompatActivity {
         name = findViewById(R.id.name);
         register = findViewById(R.id.register);
         login = findViewById(R.id.login);
+        btnClose = findViewById(R.id.button_close_cad);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,11 +74,14 @@ public class Activity_cadastro extends AppCompatActivity {
             }
         });
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Activity_cadastro.this, Activity_login.class));
-            }
+        login.setOnClickListener( view -> {
+            Intent i = new Intent(Activity_cadastro.this, Activity_login.class);
+            startActivity(i);
+        });
+
+        btnClose.setOnClickListener(view -> {
+            Intent i = new Intent(Activity_cadastro.this, MainActivity.class);
+            startActivity(i);
         });
     }
 

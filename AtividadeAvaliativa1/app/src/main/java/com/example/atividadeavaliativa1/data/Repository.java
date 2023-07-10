@@ -14,7 +14,7 @@ public class Repository {
     }
 
     public void addCategory(Evento evento) {
-        Evento e = new Evento(evento.getNomeEvento(), evento.getDataEvento(), evento.getHoraEvento(), evento.getLocalizacaoEvento(), evento.getDescricaoEvento());
+        Evento e = new Evento(evento.getNomeEvento(), evento.getDataEvento(), evento.getHoraEvento(), evento.getLocalizacaoEvento(), evento.getDescricaoEvento(), evento.getContatoEvento(), evento.getNomeContatoEvento());
         db.eventoDAO().inserirEvento(e)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

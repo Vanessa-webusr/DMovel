@@ -25,12 +25,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.atividadeavaliativa1.MainActivity;
 import com.example.atividadeavaliativa1.R;
 import com.example.atividadeavaliativa1.databinding.FragmentPerfilBinding;
-import com.example.atividadeavaliativa1.ui.home.HomeFragment;
-import com.google.android.material.navigation.NavigationView;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class PerfilFragment extends Fragment {
@@ -73,34 +70,6 @@ public class PerfilFragment extends Fragment {
                         .navigate(R.id.action_navigation_profile_to_activity_login);
             }
         });
-
-       /* binding.buttonLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                *//*NavHostFragment.findNavController(PerfilFragment.this)
-                        .navigate(R.id.action_navigation_home_to_cadastroEventoActivity);*//*
-
-                if(preferences.contains("email") && preferences.contains("password")){
-                    *//*binding.buttonLogout.setText(view.getResources().getString(R.string.login));
-                    NavHostFragment.findNavController(PerfilFragment.this)
-                            .navigate(R.id.action_navigation_profile_to_activity_login);*//*
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("name", "");
-                    editor.putString("email", "");
-                    editor.putString("password", "");
-                    editor.commit();
-                    editor.apply();
-                }
-                else{
-                    NavHostFragment.findNavController(PerfilFragment.this)
-                            .navigate(R.id.action_navigation_profile_to_activity_login);
-                    *//*binding.buttonLogout.setText(view.getResources().getString(R.string.logout));*//*
-                }
-
-            }
-        });*/
-
-
 
         return root;
     }

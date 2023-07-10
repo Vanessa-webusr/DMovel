@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.atividadeavaliativa1.MainActivity;
@@ -22,6 +23,7 @@ public class Activity_login extends AppCompatActivity {
 
     TextView register;
 
+    ImageView btnClose;
     public static String USER_FILE_NAME = "user_file";
 
     @Override
@@ -33,6 +35,7 @@ public class Activity_login extends AppCompatActivity {
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
         register = findViewById(R.id.register);
+        btnClose = findViewById(R.id.button_close_login);
         SharedPreferences preferences = getSharedPreferences(USER_FILE_NAME, Context.MODE_PRIVATE);
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +79,11 @@ public class Activity_login extends AppCompatActivity {
 
         register.setOnClickListener(view -> {
             Intent i = new Intent(Activity_login.this, Activity_cadastro.class);
+            startActivity(i);
+        });
+
+        btnClose.setOnClickListener(view -> {
+            Intent i = new Intent(Activity_login.this, MainActivity.class);
             startActivity(i);
         });
 

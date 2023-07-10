@@ -18,11 +18,10 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_eventoNome"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/et_eventoNome" />
 
     <EditText
-        android:id="@+id/et_eventoData2"
+        android:id="@+id/et_eventoHora"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -34,8 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_eventoDescricao"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/et_eventoData" />
 
     <EditText
         android:id="@+id/et_eventoNome"
@@ -62,8 +60,9 @@
         android:hint="@string/location"
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_eventoData" />
+        app:layout_constraintTop_toBottomOf="@+id/et_eventoHora" />
 
     <Button
         android:id="@+id/btn_cadastroEvento"
@@ -92,10 +91,40 @@
         android:gravity="start|top"
         android:hint="@string/description"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_eventoEndereco"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_eventoEndereco" />
+
+    <EditText
+        android:id="@+id/et_eventoContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:drawableLeft="@drawable/baseline_alternate_email_24"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/contact"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_eventoDescricao" />
+
+    <EditText
+        android:id="@+id/et_eventoContactName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:drawableLeft="@drawable/baseline_person_outline_24"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/nameCont"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_eventoContact" />
 
     <ImageView
         android:id="@+id/fecharCadastroEvento"
