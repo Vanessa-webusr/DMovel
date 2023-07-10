@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "eventos")
+@Entity(tableName = "evento")
 public class Evento {
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -15,6 +15,12 @@ public class Evento {
     @ColumnInfo(name = "dataEvento")
     private String dataEvento;
 
+<<<<<<< HEAD
+=======
+    @ColumnInfo(name = "horaEvento")
+    private String horaEvento;
+
+>>>>>>> e15433e3d67414ca5f94686eea054e44dbbc5a14
     @ColumnInfo(name = "localizacaoEvento")
     private String localizacaoEvento;
 
@@ -23,9 +29,10 @@ public class Evento {
 
     // Constructor, getters e setters
 
-    public Evento(String nomeEvento, String dataEvento, String localizacaoEvento, String descricaoEvento) {
+    public Evento(String nomeEvento, String dataEvento, String horaEvento, String localizacaoEvento, String descricaoEvento) {
         this.nomeEvento = nomeEvento;
         this.dataEvento = dataEvento;
+        this.horaEvento = horaEvento;
         this.localizacaoEvento = localizacaoEvento;
         this.descricaoEvento = descricaoEvento;
     }
@@ -55,6 +62,14 @@ public class Evento {
 
     public void setDataEvento(String dataEvento) {
         this.dataEvento = dataEvento;
+    }
+
+    public String getHoraEvento() {
+        return horaEvento;
+    }
+
+    public void setHoraEvento(String horaEvento) {
+        this.horaEvento = horaEvento;
     }
 
     public String getLocalizacaoEvento() {
