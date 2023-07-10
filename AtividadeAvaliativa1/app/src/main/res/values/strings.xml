@@ -29,6 +29,7 @@
     <string name="define_hour_event">Set Time</string>
     <string name="description_event">Event Description</string>
     <string name="register_event_sucess">Event registered successfully!</string>
+    <string name="register_user_sucess">User registered successfully!</string>
     <string name="fill_incomplete">Fill all the fields!</string>
     <string name="user_name">Username</string>
     <string name="config">Settings</string>

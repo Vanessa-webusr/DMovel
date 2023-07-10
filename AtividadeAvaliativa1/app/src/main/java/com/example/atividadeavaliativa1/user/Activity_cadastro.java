@@ -1,7 +1,5 @@
 package com.example.atividadeavaliativa1.user;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.atividadeavaliativa1.MainActivity;
 import com.example.atividadeavaliativa1.R;
-import com.example.atividadeavaliativa1.databinding.ActivityCadastroLoginBinding;
 
 public class Activity_cadastro extends AppCompatActivity {
 
@@ -63,13 +62,13 @@ public class Activity_cadastro extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(getApplicationContext(), "Usuário Registrado", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.register_user_sucess), Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
                     }).start();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Preencha Todos os Campos" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),  getResources().getString(R.string.fill_incomplete) , Toast.LENGTH_SHORT).show();
                 }
             }
         });

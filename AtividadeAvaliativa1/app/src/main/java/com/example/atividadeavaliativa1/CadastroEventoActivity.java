@@ -1,6 +1,5 @@
 package com.example.atividadeavaliativa1;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -11,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.room.Room;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.atividadeavaliativa1.data.Evento;
 import com.example.atividadeavaliativa1.data.EventoDAO;
@@ -19,17 +18,11 @@ import com.example.atividadeavaliativa1.data.EventoDatabase;
 
 import java.util.Calendar;
 
-public class CadastroEventoActivity extends Activity {
+public class CadastroEventoActivity extends AppCompatActivity {
 
-    private EditText et_eventoNome;
-    private EditText et_eventoData;
-    private EditText et_eventoHora;
-    private EditText et_eventoEndereco;
-    private EditText et_eventoDescricao;
-    private EditText et_eventoContact;
-    private EditText et_eventoContactName;
-    private Button btn_cadastroEvento;
-    private EventoDAO eventoDao;
+    EditText et_eventoNome, et_eventoData, et_eventoHora, et_eventoEndereco, et_eventoDescricao, et_eventoContact, et_eventoContactName;
+    Button btn_cadastroEvento;
+    EventoDatabase eventoDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +39,6 @@ public class CadastroEventoActivity extends Activity {
         et_eventoContact = findViewById(R.id.et_eventoContact);
         et_eventoContactName = findViewById(R.id.et_eventoContactName);
 
-        // Criação do banco de dados do Room
-        EventoDatabase db = Room.databaseBuilder(getApplicationContext(), EventoDatabase.class, "eventos-db").build();
-        eventoDao = db.eventoDAO();
 
         btn_cadastroEvento.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,15 +47,21 @@ public class CadastroEventoActivity extends Activity {
             }
         });
 
-        et_eventoData.setOnClickListener(new View.OnClickListener() {
+        et_eventoData.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) { abrirCalendario();  }
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    abrirCalendario();
+                }
+            }
         });
 
-        et_eventoHora.setOnClickListener(new View.OnClickListener() {
+        et_eventoHora.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                abrirSeletorHoras();
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    abrirSeletorHoras();
+                }
             }
         });
     }
@@ -98,8 +94,11 @@ public class CadastroEventoActivity extends Activity {
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
+                        String horaFormatada = String.format("%02d", selectedHour);
+                        String minutoFormatado = String.format("%02d", selectedMinute);
+
                         // Aqui você pode receber o horário selecionado e atualizar o campo de texto ou realizar outras operações.
-                        String horarioSelecionado = selectedHour + ":" + selectedMinute;
+                        String horarioSelecionado = horaFormatada + ":" + minutoFormatado;
                         et_eventoHora.setText(horarioSelecionado);
                     }
                 }, hora, minuto, true);
@@ -109,34 +108,50 @@ public class CadastroEventoActivity extends Activity {
 
 
     private void cadastrarEvento() {
-        String nomeEvento = et_eventoNome.getText().toString().trim();
-        String dataEvento = et_eventoData.getText().toString().trim();
-        String horaEvento = et_eventoHora.getText().toString().trim();
-        String localizacaoEvento = et_eventoEndereco.getText().toString().trim();
-        String descricaoEvento = et_eventoDescricao.getText().toString().trim();
-        String contatoEvento = et_eventoContact.getText().toString().trim();
-        String nomeContatoEvento = et_eventoContactName.getText().toString().trim();
+        String nomeEvento = et_eventoNome.getText().toString();
+        String dataEvento = et_eventoData.getText().toString();
+        String horaEvento = et_eventoHora.getText().toString();
+        String localizacaoEvento = et_eventoEndereco.getText().toString();
+        String descricaoEvento = et_eventoDescricao.getText().toString();
+        String contatoEvento = et_eventoContact.getText().toString();
+        String nomeContatoEvento = et_eventoContactName.getText().toString();
 
         // Validar se todos os campos foram preenchidos
-        if (nomeEvento.isEmpty() || dataEvento.isEmpty() || localizacaoEvento.isEmpty() || descricaoEvento.isEmpty()) {
+        if (nomeEvento.isEmpty() || dataEvento.isEmpty() || horaEvento.isEmpty() || localizacaoEvento.isEmpty() || descricaoEvento.isEmpty() || contatoEvento.isEmpty() || nomeContatoEvento.isEmpty()) {
             Toast.makeText(this, getResources().getString(R.string.fill_incomplete), Toast.LENGTH_SHORT).show(); //TODO: Como pegar strings do arquivo de strings
-            return;
+        } else {
+
+            // Criar um objeto Evento com os dados preenchidos
+            Evento evento = new Evento();
+            evento.setNomeEvento(nomeEvento);
+            evento.setDataEvento(dataEvento);
+            evento.setHoraEvento(horaEvento);
+            evento.setLocalizacaoEvento(localizacaoEvento);
+            evento.setDescricaoEvento(descricaoEvento);
+            evento.setContatoEvento(contatoEvento);
+            evento.setNomeContatoEvento(nomeContatoEvento);
+
+            // Inserir o evento no banco de dados usando o EventoDao
+            eventoDatabase = eventoDatabase.getInstance(getApplicationContext());
+            EventoDAO eventoDao = eventoDatabase.eventoDAO();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    // Register User
+                    eventoDao.inserirEvento(evento);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.register_event_sucess), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }).start();
         }
 
-        // Criar um objeto Evento com os dados preenchidos
-        Evento evento = new Evento();
-        evento.setNomeEvento(nomeEvento);
-        evento.setDataEvento(dataEvento);
-        evento.setHoraEvento(horaEvento);
-        evento.setLocalizacaoEvento(localizacaoEvento);
-        evento.setDescricaoEvento(descricaoEvento);
-        evento.setContatoEvento(contatoEvento);
-        evento.setNomeContatoEvento(nomeContatoEvento);
-
-        // Inserir o evento no banco de dados usando o EventoDao
-        eventoDao.inserirEvento(evento);
-
-        Toast.makeText(this, getResources().getString(R.string.register_event_sucess), Toast.LENGTH_SHORT).show();
 
 
         // Limpar os campos após o cadastro
@@ -149,7 +164,7 @@ public class CadastroEventoActivity extends Activity {
         et_eventoContactName.setText(getResources().getString(R.string.nameCont));
     }
 
-    public void fecharCadastro(View v){
+    public void fecharTela(View v){
         this.finish();
     }
 }
