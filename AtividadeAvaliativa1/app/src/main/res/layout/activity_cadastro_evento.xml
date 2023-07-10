@@ -7,7 +7,7 @@
     tools:context="com.example.atividadeavaliativa1.CadastroEventoActivity">
 
     <EditText
-        android:id="@+id/et_eventoData"
+        android:id="@+id/et_eventoHora"
         android:layout_width="365dp"
         android:layout_height="wrap_content"
         android:autofillHints=""
@@ -29,7 +29,7 @@
         android:autofillHints=""
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/et_eventoData"
+        app:layout_constraintBottom_toTopOf="@+id/et_eventoHora"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/iconTitulo"
@@ -47,7 +47,7 @@
         android:inputType="textPostalAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iconLocal"
-        app:layout_constraintTop_toBottomOf="@+id/et_eventoData"
+        app:layout_constraintTop_toBottomOf="@+id/et_eventoHora"
         tools:text="@string/location" />
 
     <Button
