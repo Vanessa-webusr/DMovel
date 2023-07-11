@@ -13,7 +13,7 @@ import io.reactivex.Single;
 @Dao
 public interface EventoDAO {
     @Insert
-    void inserirEvento(Evento evento);
+    void registerEvento(Evento evento);
 
     @Query("SELECT * FROM evento")
     List<Evento> loadAll();
@@ -23,7 +23,7 @@ public interface EventoDAO {
 
 
     /*@Insert
-    public Completable inserirEvento(Evento evento);*/
+    public Completable registerEvento(Evento evento);*/
 
     @Transaction
     @Query("SELECT * FROM evento WHERE id = :id ORDER BY id ASC")

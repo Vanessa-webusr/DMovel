@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.atividadeavaliativa1.data.Evento;
 import com.example.atividadeavaliativa1.data.EventoDAO;
-import com.example.atividadeavaliativa1.data.EventoDatabase;
+import com.example.atividadeavaliativa1.data.GeneralDatabase;
 
 import java.util.Calendar;
 
@@ -22,7 +22,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
     EditText et_eventoNome, et_eventoData, et_eventoHora, et_eventoEndereco, et_eventoDescricao, et_eventoContact, et_eventoContactName;
     Button btn_cadastroEvento;
-    EventoDatabase eventoDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +132,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
             evento.setNomeContatoEvento(nomeContatoEvento);
 
             // Inserir o evento no banco de dados usando o EventoDao
-            eventoDatabase = eventoDatabase.getInstance(getApplicationContext());
+            GeneralDatabase eventoDatabase = GeneralDatabase.getInstance(getApplicationContext());
             EventoDAO eventoDao = eventoDatabase.eventoDAO();
 
             new Thread(new Runnable() {
@@ -140,7 +140,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
                 public void run() {
 
                     // Register User
-                    eventoDao.inserirEvento(evento);
+                    eventoDao.registerEvento(evento);
 
                     runOnUiThread(new Runnable() {
                         @Override

@@ -1,29 +1,24 @@
 package com.example.atividadeavaliativa1.ui.ticket;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.app.AlertDialog.Builder;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.ArrayAdapter;
-import android.widget.AdapterView;
-import android.widget.Toast;
-
-import android.app.AlertDialog.Builder;
-
 import com.example.atividadeavaliativa1.EventoRecyclerViewAdapter;
 import com.example.atividadeavaliativa1.R;
 import com.example.atividadeavaliativa1.data.Evento;
 import com.example.atividadeavaliativa1.data.EventoDAO;
-import com.example.atividadeavaliativa1.data.EventoDatabase;
 import com.example.atividadeavaliativa1.data.ticket.Ticket;
 import com.example.atividadeavaliativa1.data.ticket.TicketDAO;
 import com.example.atividadeavaliativa1.databinding.ActivityCompraIngressoBinding;
+import com.example.atividadeavaliativa1.data.GeneralDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +76,7 @@ public class CompraIngresso extends AppCompatActivity {
     // Método para popular a lista de itens do banco de dados
     private void populateEventoList() {
         try {
-            eventoList = EventoDatabase.getInstance(this).eventoDAO().loadAll();
+            eventoList = GeneralDatabase.getInstance(getApplicationContext()).eventoDAO().loadAll();
 
         }catch (Exception e){
             e.printStackTrace();

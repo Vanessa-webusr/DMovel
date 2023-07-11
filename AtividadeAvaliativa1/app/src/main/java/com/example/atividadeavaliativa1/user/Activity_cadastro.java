@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.atividadeavaliativa1.MainActivity;
 import com.example.atividadeavaliativa1.R;
+import com.example.atividadeavaliativa1.data.GeneralDatabase;
 
 public class Activity_cadastro extends AppCompatActivity {
 
@@ -49,8 +50,8 @@ public class Activity_cadastro extends AppCompatActivity {
                 if (validateInput(userEntity)) {
 
                     //Do insert operation
-                    UserDatabase userDatabase = UserDatabase.getUserDatabase(getApplicationContext());
-                    UserDao userDao = userDatabase.userDao();
+                    GeneralDatabase generalDatabase = GeneralDatabase.getInstance(getApplicationContext());
+                    UserDao userDao = generalDatabase.userDao();
 
                     new Thread(new Runnable() {
                         @Override

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.atividadeavaliativa1.MainActivity;
 import com.example.atividadeavaliativa1.R;
-import com.example.atividadeavaliativa1.ui.home.HomeFragment;
+import com.example.atividadeavaliativa1.data.GeneralDatabase;
 
 public class Activity_login extends AppCompatActivity {
 
@@ -47,8 +47,8 @@ public class Activity_login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Preencha Todos os Campos", Toast.LENGTH_SHORT).show();
                 } else {
                     // Perform Query
-                    UserDatabase userDatabase = UserDatabase.getUserDatabase(getApplicationContext());
-                    UserDao userDao = userDatabase.userDao();
+                    GeneralDatabase generalDatabase = GeneralDatabase.getInstance(getApplicationContext());
+                    UserDao userDao = generalDatabase.userDao();
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
