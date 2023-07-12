@@ -24,9 +24,12 @@ public class CadastroEventoActivity extends AppCompatActivity {
     EditText et_eventoNome, et_eventoData, et_eventoHora, et_eventoEndereco, et_eventoDescricao, et_eventoContact, et_eventoContactName;
     Button btn_cadastroEvento;
 
+<<<<<<< HEAD
     ImageView btn_fechar;
 
 
+=======
+>>>>>>> a2687064e5db1948da45934ac29367e12e6c575e
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +45,6 @@ public class CadastroEventoActivity extends AppCompatActivity {
         et_eventoContact = findViewById(R.id.et_eventoContact);
         et_eventoContactName = findViewById(R.id.et_eventoContactName);
         btn_fechar = findViewById(R.id.fecharCadastroEvento);
-
 
         btn_cadastroEvento.setOnClickListener(new View.OnClickListener() {
             @Override
