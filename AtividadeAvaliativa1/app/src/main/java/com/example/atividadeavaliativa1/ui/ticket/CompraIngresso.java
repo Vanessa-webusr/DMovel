@@ -19,6 +19,7 @@ import com.example.atividadeavaliativa1.data.ticket.Ticket;
 import com.example.atividadeavaliativa1.data.ticket.TicketDAO;
 import com.example.atividadeavaliativa1.databinding.ActivityCompraIngressoBinding;
 import com.example.atividadeavaliativa1.data.GeneralDatabase;
+import com.example.atividadeavaliativa1.user.UserDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,14 +48,20 @@ public class CompraIngresso extends AppCompatActivity {
         //btn_voltar = (Button) findViewById(R.id.button_voltar_compraIngresso);
         //listView = findViewById(R.id.listView);
 
+        eventoRecyclerViewAdapter = new EventoRecyclerViewAdapter(this,eventoList);
+        binding.eventoRecyclerView.setAdapter(eventoRecyclerViewAdapter);
+
         // Inicializar a lista de itens
         eventoList = new ArrayList<>();
+
+        GeneralDatabase generalDatabase = GeneralDatabase.getInstance(getApplicationContext());
+        ticketDAO = generalDatabase.ticketDAO();
+        dao = generalDatabase.eventoDAO();
 
         // Popula a lista de eventos do banco de dados
         populateEventoList();
 
-        eventoRecyclerViewAdapter = new EventoRecyclerViewAdapter(this,eventoList);
-        binding.eventoRecyclerView.setAdapter(eventoRecyclerViewAdapter);
+
         eventoRecyclerViewAdapter.setClickListener((view, position)-> {
             Builder builder = new Builder(this);
             builder.setTitle(getResources().getString(R.string.purchase_ticket));
@@ -75,25 +82,32 @@ public class CompraIngresso extends AppCompatActivity {
 
     // Método para popular a lista de itens do banco de dados
     private void populateEventoList() {
-        try {
-            eventoList = GeneralDatabase.getInstance(getApplicationContext()).eventoDAO().loadAll();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        Evento teste = new Evento("nome","21/08/2023","hora","localização","descrição", "contato", "nomeContato");
-        eventoList.add(teste);
+        new Thread(new Runnable() {
+            @Override
+            public void run(){
+                eventoList = dao.loadAll();
+            }
+        }).start();
+        //Evento teste = new Evento("nome","21/08/2023","hora","localização","descrição", "contato", "nomeContato");
+        //eventoList.add(teste);
     }
 
 
     // Método para processar a compra de um item
     private void comprarEvento(Ticket ticket) {
-        try {
-            ticketDAO.inserirTicket(ticket);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        Toast.makeText(this, getResources().getString(R.string.purchase_ticket_success), Toast.LENGTH_SHORT).show();
+        new Thread(new Runnable() {
+            @Override
+            public void run(){
+                ticketDAO.inserirTicket(ticket);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.purchase_ticket_success), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }).start();
     }
 
     public void fecharTela(View v){

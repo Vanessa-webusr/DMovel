@@ -23,7 +23,7 @@ public class Ticket {
 
     // Construtor, getters e setters
 
-    public Ticket(String nomeEventoIngresso, String nomePessoa, String contatoEvento, String dataEventoIngreso) {
+    public Ticket(String nomeEventoIngresso, String nomePessoa, String contatoEvento, String dataEventoIngresso) {
         this.nomeEventoIngresso = nomeEventoIngresso;
         this.nomePessoa = nomePessoa;
         this.contatoEvento = contatoEvento;
