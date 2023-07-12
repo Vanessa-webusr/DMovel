@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ public class CadastroEventoActivity extends AppCompatActivity {
     EditText et_eventoNome, et_eventoData, et_eventoHora, et_eventoEndereco, et_eventoDescricao, et_eventoContact, et_eventoContactName;
     Button btn_cadastroEvento;
 
+    ImageView btn_fechar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
         btn_cadastroEvento = findViewById(R.id.btn_cadastroEvento);
         et_eventoContact = findViewById(R.id.et_eventoContact);
         et_eventoContactName = findViewById(R.id.et_eventoContactName);
+        btn_fechar = findViewById(R.id.fecharCadastroEvento);
 
 
         btn_cadastroEvento.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +50,13 @@ public class CadastroEventoActivity extends AppCompatActivity {
                 cadastrarEvento();
             }
         });
+
+        btn_fechar.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fecharTela(view);
+            }
+        }));
 
         et_eventoData.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
