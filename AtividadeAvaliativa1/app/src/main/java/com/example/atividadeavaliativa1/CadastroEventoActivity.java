@@ -1,26 +1,27 @@
 package com.example.atividadeavaliativa1;
 
-import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.room.Room;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.atividadeavaliativa1.data.Evento;
 import com.example.atividadeavaliativa1.data.EventoDAO;
-import com.example.atividadeavaliativa1.data.EventoDatabase;
+import com.example.atividadeavaliativa1.data.GeneralDatabase;
 
-public class CadastroEventoActivity extends Activity {
+import java.util.Calendar;
 
-    private EditText et_eventoNome;
-    private EditText et_eventoHora;
-    private EditText et_eventoEndereco;
-    private EditText et_eventoDescricao;
-    private Button btn_cadastroEvento;
-    private EventoDAO eventoDao;
+public class CadastroEventoActivity extends AppCompatActivity {
+
+    EditText et_eventoNome, et_eventoData, et_eventoHora, et_eventoEndereco, et_eventoDescricao, et_eventoContact, et_eventoContactName;
+    Button btn_cadastroEvento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +30,13 @@ public class CadastroEventoActivity extends Activity {
 
         // Inicialização dos componentes de UI
         et_eventoNome = findViewById(R.id.et_eventoNome);
+        et_eventoData = findViewById(R.id.et_eventoData);
         et_eventoHora = findViewById(R.id.et_eventoHora);
         et_eventoEndereco = findViewById(R.id.et_eventoEndereco);
         et_eventoDescricao = findViewById(R.id.et_eventoDescricao);
         btn_cadastroEvento = findViewById(R.id.btn_cadastroEvento);
-
-        // Criação do banco de dados do Room
-        EventoDatabase db = Room.databaseBuilder(getApplicationContext(), EventoDatabase.class, "evento.db").build();
-        eventoDao = db.eventoDAO();
+        et_eventoContact = findViewById(R.id.et_eventoContact);
+        et_eventoContactName = findViewById(R.id.et_eventoContactName);
 
         btn_cadastroEvento.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,42 +45,124 @@ public class CadastroEventoActivity extends Activity {
             }
         });
 
-        Evento evento1 = new Evento("aniversário Augusto", "13/11/2023", "14:41", "Santo André - SP", "Festa de comemoração");
-        eventoDao.inserirEvento(evento1);
+        et_eventoData.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    abrirCalendario();
+                }
+            }
+        });
 
-        Evento evento2 = new Evento("aniversário Corinthinas", "01/09/2023", "19:10", "São Paulo - SP", "113 anos");
-        eventoDao.inserirEvento(evento2);
+        et_eventoHora.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    abrirSeletorHoras();
+                }
+            }
+        });
     }
 
+    private void abrirCalendario() {
+        Calendar calendario = Calendar.getInstance();
+        int ano = calendario.get(Calendar.YEAR);
+        int mes = calendario.get(Calendar.MONTH);
+        int dia = calendario.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDayOfMonth) {
+                        // Aqui você pode receber a data selecionada e atualizar o campo de texto ou realizar outras operações.
+                        String dataSelecionada = selectedDayOfMonth + "/" + (selectedMonth + 1) + "/" + selectedYear;
+                        et_eventoData.setText(dataSelecionada);
+                    }
+                }, ano, mes, dia);
+
+        datePickerDialog.show();
+    }
+
+    private void abrirSeletorHoras() {
+        Calendar calendario = Calendar.getInstance();
+        int hora = calendario.get(Calendar.HOUR_OF_DAY);
+        int minuto = calendario.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
+                        String horaFormatada = String.format("%02d", selectedHour);
+                        String minutoFormatado = String.format("%02d", selectedMinute);
+
+                        // Aqui você pode receber o horário selecionado e atualizar o campo de texto ou realizar outras operações.
+                        String horarioSelecionado = horaFormatada + ":" + minutoFormatado;
+                        et_eventoHora.setText(horarioSelecionado);
+                    }
+                }, hora, minuto, true);
+
+        timePickerDialog.show();
+    }
+
+
     private void cadastrarEvento() {
-        String nomeEvento = et_eventoNome.getText().toString().trim();
-        String horaEvento = et_eventoHora.getText().toString().trim();
-        String localizacaoEvento = et_eventoEndereco.getText().toString().trim();
-        String descricaoEvento = et_eventoDescricao.getText().toString().trim();
+        String nomeEvento = et_eventoNome.getText().toString();
+        String dataEvento = et_eventoData.getText().toString();
+        String horaEvento = et_eventoHora.getText().toString();
+        String localizacaoEvento = et_eventoEndereco.getText().toString();
+        String descricaoEvento = et_eventoDescricao.getText().toString();
+        String contatoEvento = et_eventoContact.getText().toString();
+        String nomeContatoEvento = et_eventoContactName.getText().toString();
 
         // Validar se todos os campos foram preenchidos
-        if (nomeEvento.isEmpty() || horaEvento.isEmpty() || localizacaoEvento.isEmpty() || descricaoEvento.isEmpty()) {
-            Toast.makeText(this, "@string/fill_incomplete!", Toast.LENGTH_SHORT).show();
-            return;
+        if (nomeEvento.isEmpty() || dataEvento.isEmpty() || horaEvento.isEmpty() || localizacaoEvento.isEmpty() || descricaoEvento.isEmpty() || contatoEvento.isEmpty() || nomeContatoEvento.isEmpty()) {
+            Toast.makeText(this, getResources().getString(R.string.fill_incomplete), Toast.LENGTH_SHORT).show(); //TODO: Como pegar strings do arquivo de strings
+        } else {
+
+            // Criar um objeto Evento com os dados preenchidos
+            Evento evento = new Evento();
+            evento.setNomeEvento(nomeEvento);
+            evento.setDataEvento(dataEvento);
+            evento.setHoraEvento(horaEvento);
+            evento.setLocalizacaoEvento(localizacaoEvento);
+            evento.setDescricaoEvento(descricaoEvento);
+            evento.setContatoEvento(contatoEvento);
+            evento.setNomeContatoEvento(nomeContatoEvento);
+
+            // Inserir o evento no banco de dados usando o EventoDao
+            GeneralDatabase eventoDatabase = GeneralDatabase.getInstance(getApplicationContext());
+            EventoDAO eventoDao = eventoDatabase.eventoDAO();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    // Register User
+                    eventoDao.registerEvento(evento);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.register_event_sucess), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }).start();
         }
 
-        // Criar um objeto Evento com os dados preenchidos
-        Evento evento = new Evento();
-        evento.setNomeEvento(nomeEvento);
-        evento.setHoraEvento(horaEvento);
-        evento.setLocalizacaoEvento(localizacaoEvento);
-        evento.setDescricaoEvento(descricaoEvento);
-
-        // Inserir o evento no banco de dados usando o EventoDao
-        eventoDao.inserirEvento(evento);
-
-        Toast.makeText(this, "@string/register_event_sucess", Toast.LENGTH_SHORT).show();
 
 
         // Limpar os campos após o cadastro
-        et_eventoNome.setText("@string/title_event");
-        et_eventoHora.setText("");
-        et_eventoEndereco.setText("@string/location");
-        et_eventoDescricao.setText("@string/description");
+        et_eventoNome.setText(getResources().getString(R.string.title_event));
+        et_eventoData.setText("__/__/____");
+        et_eventoHora.setText("12:00");
+        et_eventoEndereco.setText(getResources().getString(R.string.location));
+        et_eventoDescricao.setText(getResources().getString(R.string.description));
+        et_eventoContact.setText(getResources().getString(R.string.contact));
+        et_eventoContactName.setText(getResources().getString(R.string.nameCont));
+    }
+
+    public void fecharTela(View v){
+        this.finish();
     }
 }
