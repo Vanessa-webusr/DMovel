@@ -12,15 +12,14 @@ import io.reactivex.Single;
 
 @Dao
 public interface EventoDAO {
-    @Insert
-    void registerEvento(Evento evento);
-
-    @Query("SELECT * FROM evento")
-    List<Evento> loadAll();
 
     @Query("SELECT * FROM evento ORDER BY id ASC")
     public Flowable<List<Evento>> getAll();
+    @Insert
 
+    void registerEvento(Evento evento);
+    @Query("SELECT * FROM evento")
+    List<Evento> loadAll();
 
     /*@Insert
     public Completable registerEvento(Evento evento);*/

@@ -44,7 +44,7 @@
         android:ems="10"
         android:hint="@string/title_event"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/et_eventoData"
+        app:layout_constraintBottom_toTopOf="@+id/et_eventoHora"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

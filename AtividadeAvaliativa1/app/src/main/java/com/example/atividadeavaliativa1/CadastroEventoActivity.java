@@ -23,7 +23,6 @@ public class CadastroEventoActivity extends AppCompatActivity {
     EditText et_eventoNome, et_eventoData, et_eventoHora, et_eventoEndereco, et_eventoDescricao, et_eventoContact, et_eventoContactName;
     Button btn_cadastroEvento;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +37,6 @@ public class CadastroEventoActivity extends AppCompatActivity {
         btn_cadastroEvento = findViewById(R.id.btn_cadastroEvento);
         et_eventoContact = findViewById(R.id.et_eventoContact);
         et_eventoContactName = findViewById(R.id.et_eventoContactName);
-
 
         btn_cadastroEvento.setOnClickListener(new View.OnClickListener() {
             @Override
