@@ -16,9 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AtividadeAvaliativa1"
         tools:targetApi="31">
-        <activity
-            android:name="CadastroEventoActivity"
-            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -38,15 +35,60 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name">
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.AtividadeAvaliativa1"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AtividadeAvaliativa1">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
+        <activity
+            android:name=".user.ActivityCadastroLogin"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AtividadeAvaliativa1">
+        </activity>
+
+        <activity
+            android:name=".ui.ticket.CompraIngresso"
+            android:exported="true" />
+
+        <activity
+            android:name=".user.Activity_cadastro"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AtividadeAvaliativa1">
+        </activity>
+
+        <activity
+            android:name=".user.Activity_login"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AtividadeAvaliativa1">
+        </activity>
+
+        <activity
+            android:name=".CadastroEventoActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AtividadeAvaliativa1">
+        </activity>
+
     </application>
 
 </manifest>

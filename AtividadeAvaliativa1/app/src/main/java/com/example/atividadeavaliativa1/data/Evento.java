@@ -27,18 +27,31 @@ public class Evento {
     @ColumnInfo(name = "descricaoEvento")
     private String descricaoEvento;
 
+<<<<<<< HEAD
     // Constructor, getters e setters
+=======
+    @ColumnInfo(name = "contatoEvento")
+    private String contatoEvento;
 
-    public Evento(String nomeEvento, String dataEvento, String horaEvento, String localizacaoEvento, String descricaoEvento) {
+    @ColumnInfo(name = "nomeContatoEvento")
+    private String nomeContatoEvento;
+
+
+
+    // Construtor, getters e setters
+>>>>>>> d5da3dfefee6818b276c1f270f0414b90adb68a4
+
+    public Evento(String nomeEvento, String dataEvento, String horaEvento, String localizacaoEvento, String descricaoEvento, String contatoEvento, String nomeContatoEvento) {
         this.nomeEvento = nomeEvento;
         this.dataEvento = dataEvento;
         this.horaEvento = horaEvento;
         this.localizacaoEvento = localizacaoEvento;
         this.descricaoEvento = descricaoEvento;
+        this.contatoEvento = contatoEvento;
+        this.nomeContatoEvento = nomeContatoEvento;
     }
 
     public Evento(){
-
     }
     public int getId() {
         return id;
@@ -86,5 +99,21 @@ public class Evento {
 
     public void setDescricaoEvento(String descricaoEvento) {
         this.descricaoEvento = descricaoEvento;
+    }
+
+    public String getContatoEvento() {
+        return contatoEvento;
+    }
+
+    public void setContatoEvento(String contatoEvento) {
+        this.contatoEvento = contatoEvento;
+    }
+
+    public String getNomeContatoEvento() {
+        return nomeContatoEvento;
+    }
+
+    public void setNomeContatoEvento(String nomeContatoEvento) {
+        this.nomeContatoEvento = nomeContatoEvento;
     }
 }
