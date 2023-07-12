@@ -16,7 +16,6 @@ public interface EventoDAO {
     @Query("SELECT * FROM evento ORDER BY id ASC")
     public Flowable<List<Evento>> getAll();
     @Insert
-
     void registerEvento(Evento evento);
     @Query("SELECT * FROM evento")
     List<Evento> loadAll();

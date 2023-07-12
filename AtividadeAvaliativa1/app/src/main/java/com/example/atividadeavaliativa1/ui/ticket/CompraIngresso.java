@@ -2,6 +2,7 @@ package com.example.atividadeavaliativa1.ui.ticket;
 
 import android.app.AlertDialog.Builder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -51,7 +52,7 @@ public class CompraIngresso extends AppCompatActivity {
         eventoList = new ArrayList<>();
 
         // Popula a lista de eventos do banco de dados
-        populateEventoList();
+        /*populateEventoList();
 
         eventoRecyclerViewAdapter = new EventoRecyclerViewAdapter(this,eventoList);
         binding.eventoRecyclerView.setAdapter(eventoRecyclerViewAdapter);
@@ -60,6 +61,7 @@ public class CompraIngresso extends AppCompatActivity {
             builder.setTitle(getResources().getString(R.string.purchase_ticket));
             builder.setPositiveButton(getResources().getString(R.string.yes), (dialog, which) -> {
                 Evento selectedEvento = eventoList.get(position);
+                Log.d("Ticket", selectedEvento.getContatoEvento());
                 Ticket ticket = new Ticket();
                 ticket.setContatoEvento("35999999999");
                 ticket.setDataEventoIngresso(selectedEvento.getDataEvento());
@@ -70,10 +72,10 @@ public class CompraIngresso extends AppCompatActivity {
             });
             builder.setNegativeButton(getResources().getString(R.string.no), null);
             builder.create().show();
-        });
+        });*/
     }
 
-    // Método para popular a lista de itens do banco de dados
+   /* // Método para popular a lista de itens do banco de dados
     private void populateEventoList() {
         try {
             eventoList = GeneralDatabase.getInstance(getApplicationContext()).eventoDAO().loadAll();
@@ -95,7 +97,7 @@ public class CompraIngresso extends AppCompatActivity {
         }
         Toast.makeText(this, getResources().getString(R.string.purchase_ticket_success), Toast.LENGTH_SHORT).show();
     }
-
+*/
     public void fecharTela(View v){
         this.finish();
     }

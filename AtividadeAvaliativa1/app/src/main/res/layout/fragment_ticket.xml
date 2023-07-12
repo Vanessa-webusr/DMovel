@@ -24,10 +24,10 @@
             android:visibility="visible"
             app:autoSizeTextType="none" />
 
-        <ListView
-            android:id="@+id/listViewTicket"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ticketRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="530dp" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

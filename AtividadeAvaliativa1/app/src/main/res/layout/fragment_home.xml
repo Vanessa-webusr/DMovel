@@ -56,9 +56,10 @@
                     android:id="@+id/monthTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:text="MES"
-                    android:textAlignment="center"
+                    android:textAlignment="textEnd"
                     android:textColor="?attr/actionMenuTextColor"
                     android:textSize="20sp" />
 
@@ -68,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="ANO"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
                     android:textColor="?attr/actionMenuTextColor"
                     android:textSize="20sp" />
 
@@ -86,10 +87,10 @@
 
             </LinearLayout>
 
-            <HorizontalScrollView
+            <!--<HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
                 android:layout_width="400dp"
-                android:layout_height="wrap_content"
+                android:layout_height="400dp"
                 android:layout_marginTop="8dp"
                 android:scrollbars="none"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -106,6 +107,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutDom"
                         android:layout_width="400dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -118,9 +120,17 @@
                             android:text="@string/sunday"
                             android:textAlignment="center"
                             android:textSize="16sp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewDom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutSeg"
                         android:layout_width="400dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -133,9 +143,17 @@
                             android:text="@string/monday"
                             android:textAlignment="center"
                             android:textSize="16sp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewSeg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutTer"
                         android:layout_width="400dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -148,9 +166,17 @@
                             android:text="@string/tuesday"
                             android:textAlignment="center"
                             android:textSize="16sp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewTer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutQua"
                         android:layout_width="400dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -163,9 +189,17 @@
                             android:text="@string/wednesday"
                             android:textAlignment="center"
                             android:textSize="16sp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewQua"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutQui"
                         android:layout_width="400dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -178,9 +212,17 @@
                             android:text="@string/thursday"
                             android:textAlignment="center"
                             android:textSize="16sp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewQui"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutSex"
                         android:layout_width="400dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -193,9 +235,17 @@
                             android:text="@string/friday"
                             android:textAlignment="center"
                             android:textSize="16sp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewSex"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutSab"
                         android:layout_width="400dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
@@ -206,25 +256,39 @@
                             android:layout_weight="1"
                             android:text="@string/saturday"
                             android:textAlignment="center"
-                            android:textColor="@color/black"
                             android:textSize="16sp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewSab"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
                     </LinearLayout>
 
                 </LinearLayout>
 
-            </HorizontalScrollView>
+            </HorizontalScrollView>-->
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/button_evento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="32dp"
                 android:layout_marginBottom="72dp"
                 android:clickable="true"
                 android:src="@android:drawable/ic_input_add"
                 app:backgroundTint="?attr/colorPrimaryVariant"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewNomes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
             <!--<androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"

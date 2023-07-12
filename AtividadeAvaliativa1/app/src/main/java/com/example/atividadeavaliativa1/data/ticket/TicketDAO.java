@@ -21,5 +21,4 @@ public interface TicketDAO {
     @Query("SELECT * FROM ingresso")
     List<Ticket> loadAll();
 
-
 }

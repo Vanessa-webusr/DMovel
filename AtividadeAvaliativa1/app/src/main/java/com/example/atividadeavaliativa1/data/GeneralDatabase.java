@@ -7,6 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.atividadeavaliativa1.data.ticket.Ticket;
+import com.example.atividadeavaliativa1.data.ticket.TicketDAO;
 import com.example.atividadeavaliativa1.user.UserDao;
 import com.example.atividadeavaliativa1.user.UserEntity;
 
@@ -25,4 +26,6 @@ public abstract class GeneralDatabase extends RoomDatabase {
     public abstract UserDao userDao();
 
     public abstract EventoDAO eventoDAO();
+
+    public abstract TicketDAO ticketDAO();
 }
