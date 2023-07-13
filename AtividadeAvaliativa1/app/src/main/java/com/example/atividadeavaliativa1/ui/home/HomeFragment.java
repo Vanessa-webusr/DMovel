@@ -1,5 +1,6 @@
 package com.example.atividadeavaliativa1.ui.home;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import androidx.appcompat.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -60,7 +61,10 @@ public class HomeFragment extends Fragment {
             "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
     private int currentMonthIndex = 0;
     private FragmentHomeBinding binding;
+    private SearchView searchView;
     Calendar calendar = Calendar.getInstance();
+    RecyclerView recyclerViewEventos;
+    EventoAdapter eventoAdapter;
 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -73,10 +77,15 @@ public class HomeFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        recyclerViewEventos = view.findViewById(R.id.recyclerViewNomes);
+
+        recyclerViewEventos.setLayoutManager(new LinearLayoutManager(requireContext()));
+
         monthTextView = view.findViewById(R.id.monthTextView);
         yearTextView = view.findViewById(R.id.yearTextView);
         prevMonthButton = view.findViewById(R.id.prevMonthButton);
         nextMonthButton = view.findViewById(R.id.nextMonthButton);
+        searchView = view.findViewById(R.id.searchView);
 
         prevMonthButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,8 +121,41 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Obter o mês atual
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                List<Evento> eventosEncontrados = buscarEventos(query);
+                exibirResultados(eventosEncontrados);
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                List<Evento> eventosEncontrados = buscarEventos(newText);
+                exibirResultados(eventosEncontrados);
+                return false;
+            }
+
+            private List<Evento> buscarEventos(String query) {
+                GeneralDatabase eventoDatabase = GeneralDatabase.getInstance(getActivity().getApplicationContext());
+                EventoDAO eventoDAO = eventoDatabase.eventoDAO();
+
+                if (query.isEmpty()) {
+                    return eventoDAO.loadAll();
+                } else {
+                    return eventoDAO.buscarEventosPorNome(query);
+                }
+            }
+
+
+            private void exibirResultados(List<Evento> eventos) {
+                 //listaEventosAdapter.atualizarLista(eventos);
+                eventoAdapter = new EventoAdapter(eventos);
+                recyclerViewEventos.setAdapter(eventoAdapter);
+            }
+        });
+
+        // Obter o mês atual
         int currentMonth = calendar.get(Calendar.MONTH);
         currentMonthIndex = currentMonth;
 
@@ -144,11 +186,14 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerViewEventos = view.findViewById(R.id.recyclerViewNomes);
+        /*RecyclerView recyclerViewEventos = view.findViewById(R.id.recyclerViewNomes);*/
         recyclerViewEventos.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         EventoDAO eventoDAO = GeneralDatabase.getInstance(requireContext()).eventoDAO();
+        String currentMonth = months[currentMonthIndex];
+        String currentYear = String.valueOf(calendar.get(Calendar.YEAR));
         Flowable<List<Evento>> flowable = eventoDAO.getAll();
+        //Flowable<List<Evento>> flowable = eventoDAO.getAllMesAno(currentMonth, currentYear);
         flowable
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

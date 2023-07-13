@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.atividadeavaliativa1.data.Evento;
 import com.example.atividadeavaliativa1.R;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder> {
@@ -42,14 +44,17 @@ public class EventoAdapter extends RecyclerView.Adapter<EventoAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textViewNomeEvento;
+        private TextView textViewDataEvento;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewNomeEvento = itemView.findViewById(R.id.nomeEventoTextView);
+            textViewDataEvento = itemView.findViewById(R.id.dataEventoTextView);
         }
 
         public void bind(Evento evento) {
             textViewNomeEvento.setText(evento.getNomeEvento());
+            textViewDataEvento.setText(evento.getDataEvento());
         }
     }
 }
