@@ -7,15 +7,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.SearchView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.atividadeavaliativa1.R;
+import com.example.atividadeavaliativa1.data.Evento;
+import com.example.atividadeavaliativa1.data.EventoDAO;
+import com.example.atividadeavaliativa1.data.GeneralDatabase;
 import com.example.atividadeavaliativa1.databinding.FragmentHomeBinding;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -35,8 +41,7 @@ public class HomeFragment extends Fragment {
             "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
     private int currentMonthIndex = 0;
     private FragmentHomeBinding binding;
-
-    //SearchView searchView;
+    private SearchView searchView;
 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,7 +51,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        //searchView = view.findViewById(R.id.searchView);
+        searchView = view.findViewById(R.id.searchView);
 
         super.onViewCreated(view, savedInstanceState);
 
@@ -84,7 +89,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        /*searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 List<Evento> eventosEncontrados = buscarEventos(query);
@@ -100,7 +105,7 @@ public class HomeFragment extends Fragment {
             }
 
             private List<Evento> buscarEventos(String query) {
-                GeneralDatabase eventoDatabase = GeneralDatabase.getInstance();
+                GeneralDatabase eventoDatabase = GeneralDatabase.getInstance(getActivity().getApplicationContext());
                 EventoDAO eventoDAO = eventoDatabase.eventoDAO();
 
 
@@ -115,7 +120,7 @@ public class HomeFragment extends Fragment {
             private void exibirResultados(List<Evento> eventos) {
                 //listaEventosAdapter.atualizarLista(eventos);
             }
-        });*/
+        });
 
         // Obter o mês atual
         Calendar calendar = Calendar.getInstance();
