@@ -30,8 +30,7 @@ A chave da API pode ser adquirida seguindo este passo a passo disponível em [[P
 #### Execução do aplicativo através de um emulador do Android Studio
 
 Para executar o aplicativo através de um emulador do Android Studio basta selecionar emulador de preferência na IDE do Android Studio e executar o aplicativo. Como mostrado na imagem abaixo:
-
-![]("https://github.com/Vanessa-webusr/DMovel/tree/final/AtividadeAvaliativa1/emulador.png")
+![dispositivo](https://github.com/Vanessa-webusr/DMovel/assets/85959652/0a7a937d-e657-4524-a385-c02e5507de7e)
 
 #### Execução do aplicativo através de um dispositivo móvel
 
@@ -41,7 +40,6 @@ Para executar o aplicativo através de um emulador do Android Studio basta selec
 4. Executar o aplicativo.
 
 A imagem abaixo apresenta um exemplo de escolha do dispositivo.
-
-![]("https://github.com/Vanessa-webusr/DMovel/tree/final/AtividadeAvaliativa1/dispositivo.png")
+![emulador](https://github.com/Vanessa-webusr/DMovel/assets/85959652/a5e90cd3-09e4-42d0-ad80-cdd62ada18b8)
 
 
