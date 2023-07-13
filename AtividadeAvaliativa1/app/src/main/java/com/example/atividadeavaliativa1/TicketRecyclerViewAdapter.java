@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.atividadeavaliativa1.data.Evento;
 import com.example.atividadeavaliativa1.data.ticket.Ticket;
 
 import java.util.List;
@@ -17,18 +16,17 @@ import java.util.List;
 public class TicketRecyclerViewAdapter extends RecyclerView.Adapter<TicketRecyclerViewAdapter.TicketViewHolder> {
     //private Context context;
     private List<Ticket> tickets;
-    private ItemClickListener mClickListener;
-    private LayoutInflater mInflater;
 
-    public TicketRecyclerViewAdapter(Context context, List<Ticket> data) {
-        this.mInflater = LayoutInflater.from(context);
-        this.tickets = data;
+
+
+    public TicketRecyclerViewAdapter(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     @NonNull
     @Override
     public TicketViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recyclerviewticket_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerviewticket_row, parent, false);
         return new TicketViewHolder(view);
     }
 
@@ -36,9 +34,9 @@ public class TicketRecyclerViewAdapter extends RecyclerView.Adapter<TicketRecycl
     public void onBindViewHolder(@NonNull TicketViewHolder holder, int position) {
         Ticket ticket = tickets.get(position);
         holder.nomePessoaTicketTextView.setText(ticket.getNomePessoa());
-        holder.dataTicketTextView.setText(ticket.getDataEventoIngresso());
         holder.nomeTicketTextView.setText(ticket.getNomeEventoIngresso());
-        holder.contatoTicketTextView.setText(ticket.getContatoEvento());
+        holder.dataTicketTextView.setText(ticket.getDataEventoIngresso());
+        holder.contatoTicketTextView.setText(ticket.getContatoEventoIngresso());
         // Defina os outros atributos do ticket no ViewHolder
     }
 
@@ -47,7 +45,7 @@ public class TicketRecyclerViewAdapter extends RecyclerView.Adapter<TicketRecycl
         return tickets.size();
     }
 
-    public class TicketViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class TicketViewHolder extends RecyclerView.ViewHolder {
         TextView nomeTicketTextView;
         TextView dataTicketTextView;
         TextView nomePessoaTicketTextView;
@@ -60,27 +58,10 @@ public class TicketRecyclerViewAdapter extends RecyclerView.Adapter<TicketRecycl
             dataTicketTextView = itemView.findViewById(R.id.dataTicketTextView);
             nomeTicketTextView = itemView.findViewById(R.id.nomeTicketTextView);
             contatoTicketTextView = itemView.findViewById(R.id.contatoTicketTextView);
-            itemView.setOnClickListener(this);
+
             // Inicialize os outros atributos de layout necessários
         }
 
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-        }
     }
 
-    // convenience method for getting data at click position
-    Ticket getItem(int id) {
-        return tickets.get(id);
-    }
-
-    // allows clicks events to be caught
-    public void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
 }

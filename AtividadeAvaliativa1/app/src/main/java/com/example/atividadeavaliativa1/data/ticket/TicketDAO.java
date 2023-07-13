@@ -4,13 +4,9 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import io.reactivex.Flowable;
 import java.util.List;
-import java.util.Locale;
+
 
 @Dao
 public interface TicketDAO {
@@ -19,6 +15,6 @@ public interface TicketDAO {
     void inserirTicket(Ticket ticket);
 
     @Query("SELECT * FROM ingresso")
-    List<Ticket> loadAll();
+    Flowable<List<Ticket>> getAll();
 
 }

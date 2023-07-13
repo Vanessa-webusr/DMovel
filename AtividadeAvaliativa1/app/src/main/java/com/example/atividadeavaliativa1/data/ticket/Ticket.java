@@ -15,18 +15,18 @@ public class Ticket {
     @ColumnInfo(name = "nomePessoa")
     private String nomePessoa;
 
-    @ColumnInfo(name = "contatoEvento")
-    private String contatoEvento;
+    @ColumnInfo(name = "contatoEventoIngresso")
+    private String contatoEventoIngresso;
 
     @ColumnInfo(name = "dataEventoIngresso")
     private String dataEventoIngresso;
 
     // Construtor, getters e setters
 
-    public Ticket(String nomeEventoIngresso, String nomePessoa, String contatoEvento, String dataEventoIngresso) {
+    public Ticket(String nomeEventoIngresso, String nomePessoa, String contatoEventoIngresso, String dataEventoIngresso) {
         this.nomeEventoIngresso = nomeEventoIngresso;
         this.nomePessoa = nomePessoa;
-        this.contatoEvento = contatoEvento;
+        this.contatoEventoIngresso = contatoEventoIngresso;
         this.dataEventoIngresso = dataEventoIngresso;
     }
 
@@ -57,12 +57,12 @@ public class Ticket {
         this.nomePessoa = nomePessoa;
     }
 
-    public String getContatoEvento() {
-        return contatoEvento;
+    public String getContatoEventoIngresso() {
+        return contatoEventoIngresso;
     }
 
-    public void setContatoEvento(String contatoEvento) {
-        this.contatoEvento = contatoEvento;
+    public void setContatoEventoIngresso(String contatoEventoIngresso) {
+        this.contatoEventoIngresso = contatoEventoIngresso;
     }
 
     public String getDataEventoIngresso() {return dataEventoIngresso;}

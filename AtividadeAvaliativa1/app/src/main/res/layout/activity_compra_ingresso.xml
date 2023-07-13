@@ -12,6 +12,16 @@
         android:orientation="vertical"
         tools:context=".ui.ticket.CompraIngresso">
 
+        <TextView
+            android:id="@+id/eventoTextView_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/event_empty"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/textView_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/eventoRecyclerView"
             android:layout_width="match_parent"
