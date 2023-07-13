@@ -9,6 +9,9 @@ public class Ticket {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    @ColumnInfo(name = "idUsuario")
+    private Integer idUsuario;
+
     @ColumnInfo(name = "nomeEventoIngresso")
     private String nomeEventoIngresso;
 
@@ -30,6 +33,14 @@ public class Ticket {
         this.dataEventoIngresso = dataEventoIngresso;
     }
 
+    public Ticket(Integer idUsuario, String nomeEventoIngresso, String nomePessoa, String contatoEventoIngresso, String dataEventoIngresso) {
+        this.idUsuario = idUsuario;
+        this.nomeEventoIngresso = nomeEventoIngresso;
+        this.nomePessoa = nomePessoa;
+        this.contatoEventoIngresso = contatoEventoIngresso;
+        this.dataEventoIngresso = dataEventoIngresso;
+    }
+
     public Ticket(){
 
     }
@@ -39,6 +50,12 @@ public class Ticket {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Integer getIdUsuario() {return idUsuario;}
+
+    public void setIdUsuario(Integer idUsuario){
+        this.idUsuario = idUsuario;
     }
 
     public String getNomeEventoIngresso() {

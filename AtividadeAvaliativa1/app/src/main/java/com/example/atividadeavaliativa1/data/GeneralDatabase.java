@@ -11,7 +11,7 @@ import com.example.atividadeavaliativa1.data.ticket.TicketDAO;
 import com.example.atividadeavaliativa1.user.UserDao;
 import com.example.atividadeavaliativa1.user.UserEntity;
 
-@Database(entities = {UserEntity.class, Evento.class, Ticket.class}, version = 2, exportSchema = false)
+@Database(entities = {UserEntity.class, Evento.class, Ticket.class}, version = 3, exportSchema = false)
 public abstract class GeneralDatabase extends RoomDatabase {
     private static final String dbName = "dmovel.db";
     private static GeneralDatabase generalDatabase;

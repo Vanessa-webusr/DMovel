@@ -1,9 +1,11 @@
 package com.example.atividadeavaliativa1.ui.ticket;
 
-import androidx.lifecycle.ViewModelProvider;
+
+import static com.example.atividadeavaliativa1.user.Activity_login.USER_FILE_NAME;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,21 +19,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
 
-import com.example.atividadeavaliativa1.EventoRecyclerViewAdapter;
 import com.example.atividadeavaliativa1.MainActivity;
 import com.example.atividadeavaliativa1.R;
 import com.example.atividadeavaliativa1.TicketRecyclerViewAdapter;
-import com.example.atividadeavaliativa1.data.Evento;
-import com.example.atividadeavaliativa1.data.EventoDAO;
 import com.example.atividadeavaliativa1.data.GeneralDatabase;
 import com.example.atividadeavaliativa1.data.ticket.Ticket;
 import com.example.atividadeavaliativa1.data.ticket.TicketDAO;
 import com.example.atividadeavaliativa1.databinding.FragmentTicketBinding;
-import com.example.atividadeavaliativa1.ui.ticket.CompraIngresso;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -67,12 +63,17 @@ public class TicketFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        // Popula a lista de tickets do banco de dados
-        populateTicketList();
+        SharedPreferences preferences = requireContext().getSharedPreferences(USER_FILE_NAME, Context.MODE_PRIVATE);
 
+        if(preferences.contains("email") && preferences.contains("password")){
+            // Popula a lista de tickets do banco de dados
+            populateTicketList();
+        }else{
+            binding.ticketTextViewLogout.setVisibility(View.VISIBLE);
+            binding.ticketButtonLogin.setVisibility(View.VISIBLE);
+        }
 
-
-        //Como pode ser feito
+        //Configuração do botão para compra de ingressos
         binding.buttonTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +82,21 @@ public class TicketFragment extends Fragment {
             }
         });
 
+        binding.ticketButtonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(requireContext(), com.example.atividadeavaliativa1.user.ActivityCadastroLogin.class);
+                if (intent.resolveActivity(requireActivity().getPackageManager()) != null) {
+                    try {
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        Log.e("TicketFragment", "Erro ao iniciar ActivityCadastroLogin", e);
+                    }
+                } else {
+                    Log.e("TicketFragment", "ActivityCadastroLogin não encontrada");
+                }
+            }
+        });
     }
 
     // Método para popular a lista de itens do banco de dado
@@ -92,8 +108,6 @@ public class TicketFragment extends Fragment {
         ticketList
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                //.flatMap(Flowable::fromIterable) // Converte List<Ticket> em Ticket individual
-                //.toList() // Converte Ticket individual em List<Ticket>
                 .subscribe(tickets -> {
                     Log.d("TicketFragment","Tickets: " + tickets.size());
                     // Obtém a data atual

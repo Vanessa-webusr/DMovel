@@ -1,11 +1,16 @@
 package com.example.atividadeavaliativa1.ui.ticket;
 
+import static com.example.atividadeavaliativa1.user.Activity_login.USER_FILE_NAME;
+
 import android.app.AlertDialog.Builder;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +24,7 @@ import com.example.atividadeavaliativa1.data.ticket.TicketDAO;
 import com.example.atividadeavaliativa1.databinding.ActivityCompraIngressoBinding;
 import com.example.atividadeavaliativa1.data.GeneralDatabase;
 import com.example.atividadeavaliativa1.user.UserDao;
+import com.example.atividadeavaliativa1.user.UserEntity;
 
 
 import java.util.ArrayList;
@@ -72,12 +78,27 @@ public class CompraIngresso extends AppCompatActivity {
                             builder.setPositiveButton(getResources().getString(R.string.yes), (dialog, which) -> {
 
                                 Evento selectedEvento = eventos.get(position);
+
                                 Ticket ticket = new Ticket();
+                                SharedPreferences preferences = getSharedPreferences(USER_FILE_NAME, Context.MODE_PRIVATE);
+                                String display = preferences.getString("name", getResources().getString(R.string.user_name));
+                                String userIdText = preferences.getString("email", "");
+                                String passwordText = preferences.getString("password", "");
+                                GeneralDatabase generalDatabase = GeneralDatabase.getInstance(getApplicationContext());
+                                UserDao userDao = generalDatabase.userDao();
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        UserEntity userEntity = userDao.login(userIdText, passwordText);
+                                        ticket.setIdUsuario(userEntity.getId());
+                                    }
+                                }).start();
+
                                 ticket.setContatoEventoIngresso(selectedEvento.getContatoEvento());
 
                                 ticket.setDataEventoIngresso(selectedEvento.getDataEvento());
 
-                                ticket.setNomePessoa("AquiTemQuePuxarDoLoginMasNaoAchei");
+                                ticket.setNomePessoa(display);
 
                                 ticket.setNomeEventoIngresso(selectedEvento.getNomeEvento());
 

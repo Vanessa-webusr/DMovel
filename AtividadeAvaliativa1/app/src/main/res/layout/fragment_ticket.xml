@@ -18,11 +18,32 @@
             android:id="@+id/textView_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/title_ticket"
+            android:text="@string/my_tickets"
             android:textAlignment="center"
             android:textSize="34sp"
             android:visibility="visible"
             app:autoSizeTextType="none" />
+
+        <TextView
+            android:id="@+id/ticketTextView_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ticket_logout"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_title" />
+
+        <Button
+            android:id="@+id/ticketButton_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="login"
+            android:text="@string/login"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_title" />
 
         <TextView
             android:id="@+id/ticketTextView_empty"
