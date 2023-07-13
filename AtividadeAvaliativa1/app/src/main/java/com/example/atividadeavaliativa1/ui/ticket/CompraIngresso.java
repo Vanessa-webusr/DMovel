@@ -83,17 +83,18 @@ public class CompraIngresso extends AppCompatActivity {
                                 SharedPreferences preferences = getSharedPreferences(USER_FILE_NAME, Context.MODE_PRIVATE);
                                 String display = preferences.getString("name", getResources().getString(R.string.user_name));
                                 String userIdText = preferences.getString("email", "");
+                                Log.d("CompraIngresso","RECUPERANDO: " + userIdText);
                                 String passwordText = preferences.getString("password", "");
-                                GeneralDatabase generalDatabase = GeneralDatabase.getInstance(getApplicationContext());
+                               /* GeneralDatabase generalDatabase = GeneralDatabase.getInstance(getApplicationContext());
                                 UserDao userDao = generalDatabase.userDao();
                                 new Thread(new Runnable() {
                                     @Override
                                     public void run() {
                                         UserEntity userEntity = userDao.login(userIdText, passwordText);
-                                        ticket.setIdUsuario(userEntity.getId());
+                                        ticket.setEmailUsuario(userEntity.getUserId());
                                     }
-                                }).start();
-
+                                }).start();*/
+                                ticket.setEmailUsuario(userIdText);
                                 ticket.setContatoEventoIngresso(selectedEvento.getContatoEvento());
 
                                 ticket.setDataEventoIngresso(selectedEvento.getDataEvento());
