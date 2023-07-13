@@ -23,8 +23,8 @@ import com.example.atividadeavaliativa1.data.ticket.Ticket;
 import com.example.atividadeavaliativa1.data.ticket.TicketDAO;
 import com.example.atividadeavaliativa1.databinding.ActivityCompraIngressoBinding;
 import com.example.atividadeavaliativa1.data.GeneralDatabase;
-import com.example.atividadeavaliativa1.user.UserDao;
-import com.example.atividadeavaliativa1.user.UserEntity;
+import com.example.atividadeavaliativa1.data.user.UserDao;
+import com.example.atividadeavaliativa1.data.user.UserEntity;
 
 
 import java.util.ArrayList;
