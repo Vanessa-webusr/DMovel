@@ -154,8 +154,8 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
         // Limpar os campos após o cadastro
         et_eventoNome.setText(getResources().getString(R.string.title_event));
-        et_eventoData.setText("__/__/____");
-        et_eventoHora.setText("12:00");
+        et_eventoData.setText(getResources().getString(R.string.define_date_event));
+        et_eventoHora.setText(getResources().getString(R.string.define_hour_event));
         et_eventoEndereco.setText(getResources().getString(R.string.location));
         et_eventoDescricao.setText(getResources().getString(R.string.description));
         et_eventoContact.setText(getResources().getString(R.string.contact));
