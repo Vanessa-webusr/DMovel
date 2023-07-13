@@ -17,7 +17,7 @@ Vanessa de Cássia Alves - 795314
 O aplicativo possui uma API do Google Maps para visualização de um mapa, para que essa funcionalidade seja habilitada é necessário inserir a chave da API no arquivo local.properties da seguinte maneira:
 MAPS_KEY = {chave da API}
 
-A chave da API pode ser adquirida seguindo este passo a passo disponível em [[Plataforma Google Mpas]] (https://developers.google.com/maps/documentation/javascript/get-api-key?hl=pt-br):
+A chave da API pode ser adquirida seguindo este passo a passo disponível em [[Plataforma Google Mpas]](https://developers.google.com/maps/documentation/javascript/get-api-key?hl=pt-br):
 
 1. Acesse a página Plataforma Google Maps > Credenciais.
 
@@ -33,7 +33,7 @@ Para executar o aplicativo através de um emulador do Android Studio basta selec
 
 <p float="left">
 
- <img src="https://github.com/Vanessa-webusr/DMovel/tree/main/AtividadeAvaliativa1/emulador.png" width="524" height="84"/>
+ <img src="https://github.com/Vanessa-webusr/DMovel/tree/final/AtividadeAvaliativa1/emulador.png" width="524" height="84"/>
 
 </p>
 
@@ -48,7 +48,7 @@ A imagem abaixo apresenta um exemplo de escolha do dispositivo.
 
 <p float="left">
 
- <img src="https://github.com/Vanessa-webusr/DMovel/tree/main/AtividadeAvaliativa1/dispositivo.png" width="564" height="83"/>
+ <img src="https://github.com/Vanessa-webusr/DMovel/tree/final/AtividadeAvaliativa1/dispositivo.png" width="564" height="83"/>
 
 </p>
 
