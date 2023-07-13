@@ -133,7 +133,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:contentDescription="@string/close_event_register"
-        android:onClick="fecharCadastro"
+        android:onClick="fecharTela"
         android:src="@android:drawable/ic_menu_close_clear_cancel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

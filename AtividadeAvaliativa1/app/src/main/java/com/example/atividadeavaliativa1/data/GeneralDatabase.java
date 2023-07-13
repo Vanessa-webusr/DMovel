@@ -19,6 +19,7 @@ public abstract class GeneralDatabase extends RoomDatabase {
         if (generalDatabase == null) {
             generalDatabase = Room.databaseBuilder(context, GeneralDatabase.class, dbName)
                     .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build();
         }
         return generalDatabase;
