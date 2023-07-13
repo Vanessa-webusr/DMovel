@@ -5,40 +5,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.atividadeavaliativa1.EventoRecyclerViewAdapter;
 import com.example.atividadeavaliativa1.R;
-import com.example.atividadeavaliativa1.databinding.FragmentHomeBinding;
-
-import java.text.ParseException;
-import java.util.Calendar;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.ArrayList;
-
 import com.example.atividadeavaliativa1.data.Evento;
 import com.example.atividadeavaliativa1.data.EventoDAO;
 import com.example.atividadeavaliativa1.data.GeneralDatabase;
+import com.example.atividadeavaliativa1.databinding.FragmentHomeBinding;
+
+import java.util.Calendar;
+import java.util.List;
 
 import io.reactivex.Flowable;
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
-
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.DividerItemDecoration;
 
 
 public class HomeFragment extends Fragment {
