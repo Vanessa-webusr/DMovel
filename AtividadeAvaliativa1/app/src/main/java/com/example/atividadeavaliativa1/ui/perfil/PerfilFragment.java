@@ -36,8 +36,8 @@ public class PerfilFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        PerfilViewModel perfilViewModel =
-                new ViewModelProvider(this).get(PerfilViewModel.class);
+/*        PerfilViewModel perfilViewModel =
+                new ViewModelProvider(this).get(PerfilViewModel.class);*/
 
         binding = FragmentPerfilBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

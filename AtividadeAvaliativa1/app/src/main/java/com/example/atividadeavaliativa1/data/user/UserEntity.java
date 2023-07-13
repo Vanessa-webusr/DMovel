@@ -1,4 +1,4 @@
-package com.example.atividadeavaliativa1.user;
+package com.example.atividadeavaliativa1.data.user;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

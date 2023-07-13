@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.atividadeavaliativa1.MainActivity;
 import com.example.atividadeavaliativa1.R;
 import com.example.atividadeavaliativa1.data.GeneralDatabase;
+import com.example.atividadeavaliativa1.data.user.UserDao;
+import com.example.atividadeavaliativa1.data.user.UserEntity;
 
 public class Activity_cadastro extends AppCompatActivity {
 

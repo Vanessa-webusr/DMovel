@@ -102,8 +102,11 @@ public class TicketFragment extends Fragment {
     // Método para popular a lista de itens do banco de dado
     public void populateTicketList() {
         validList = new ArrayList<>();
+        SharedPreferences preferences = requireContext().getSharedPreferences(USER_FILE_NAME, Context.MODE_PRIVATE);
+        //String display = preferences.getString("name", getResources().getString(R.string.user_name));
+        String userIdText = preferences.getString("email", "");
         TicketDAO ticketDAO = GeneralDatabase.getInstance(getContext()).ticketDAO();
-        ticketList = ticketDAO.getAll();
+        ticketList = ticketDAO.getAllByUser(userIdText);
         Log.d("TicketFragment","chegou aaqqqqqqqqqq");
         ticketList
                 .observeOn(AndroidSchedulers.mainThread())

@@ -1,46 +1,27 @@
 package com.example.atividadeavaliativa1.ui.home;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.appcompat.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.atividadeavaliativa1.EventoRecyclerViewAdapter;
 import com.example.atividadeavaliativa1.R;
 import com.example.atividadeavaliativa1.databinding.FragmentHomeBinding;
-
-import java.text.ParseException;
 import java.util.Calendar;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.ArrayList;
-
 import com.example.atividadeavaliativa1.data.Evento;
 import com.example.atividadeavaliativa1.data.EventoDAO;
 import com.example.atividadeavaliativa1.data.GeneralDatabase;
-
 import io.reactivex.Flowable;
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
-
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.DividerItemDecoration;
-
+import androidx.appcompat.widget.SearchView;
 
 public class HomeFragment extends Fragment {
 
@@ -57,19 +38,19 @@ public class HomeFragment extends Fragment {
     private TextView yearTextView;
     private Button prevMonthButton;
     private Button nextMonthButton;
+    RecyclerView recyclerViewEventos;
     private String[] months = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",
             "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
     private int currentMonthIndex = 0;
     private FragmentHomeBinding binding;
+
+    private int currentMonth;
+    private int currentYear;
     private SearchView searchView;
     Calendar calendar = Calendar.getInstance();
-    RecyclerView recyclerViewEventos;
-    EventoAdapter eventoAdapter;
 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
@@ -77,15 +58,10 @@ public class HomeFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerViewEventos = view.findViewById(R.id.recyclerViewNomes);
-
-        recyclerViewEventos.setLayoutManager(new LinearLayoutManager(requireContext()));
-
         monthTextView = view.findViewById(R.id.monthTextView);
         yearTextView = view.findViewById(R.id.yearTextView);
         prevMonthButton = view.findViewById(R.id.prevMonthButton);
         nextMonthButton = view.findViewById(R.id.nextMonthButton);
-        searchView = view.findViewById(R.id.searchView);
 
         prevMonthButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +97,17 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        // Obter o mês atual
+
+        currentMonth = calendar.get(Calendar.MONTH);
+        currentYear = calendar.get(Calendar.YEAR);
+        currentMonthIndex = currentMonth;
+
+        // Atualizar o TextView com o mês atual
+        updateMonthTextView();
+
+
+/*        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 List<Evento> eventosEncontrados = buscarEventos(query);
@@ -149,18 +135,17 @@ public class HomeFragment extends Fragment {
 
 
             private void exibirResultados(List<Evento> eventos) {
-                 //listaEventosAdapter.atualizarLista(eventos);
-                eventoAdapter = new EventoAdapter(eventos);
+                //listaEventosAdapter.atualizarLista(eventos);
+
+                //eventoAdapter = new EventoAdapter(eventos);
+                monthTextView.setText(currentMonth);
+                yearTextView.setText(currentYear);
+                EventoAdapter eventoAdapter = new EventoAdapter(eventos, monthTextView.getText().toString(), yearTextView.getText().toString());
                 recyclerViewEventos.setAdapter(eventoAdapter);
+
             }
-        });
+        });*/
 
-        // Obter o mês atual
-        int currentMonth = calendar.get(Calendar.MONTH);
-        currentMonthIndex = currentMonth;
-
-        // Atualizar o TextView com o mês atual
-        updateMonthTextView();
 
         return view;
     }
@@ -186,21 +171,22 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        /*RecyclerView recyclerViewEventos = view.findViewById(R.id.recyclerViewNomes);*/
-        recyclerViewEventos.setLayoutManager(new LinearLayoutManager(requireContext()));
-
+        RecyclerView recyclerViewEventos = view.findViewById(R.id.recyclerViewNomes);
         EventoDAO eventoDAO = GeneralDatabase.getInstance(requireContext()).eventoDAO();
-        String currentMonth = months[currentMonthIndex];
-        String currentYear = String.valueOf(calendar.get(Calendar.YEAR));
+
+        updateRecycleView(recyclerViewEventos, eventoDAO);
+    }
+
+    private void updateRecycleView(RecyclerView recyclerViewEventos, EventoDAO eventoDAO){
         Flowable<List<Evento>> flowable = eventoDAO.getAll();
-        //Flowable<List<Evento>> flowable = eventoDAO.getAllMesAno(currentMonth, currentYear);
         flowable
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         eventos -> {
-                            // Configura o Adapter com a lista de eventos
-                            EventoAdapter eventoAdapter = new EventoAdapter(eventos);
+
+                            EventoAdapter eventoAdapter = new EventoAdapter(eventos, monthTextView.getText().toString(), yearTextView.getText().toString());
                             recyclerViewEventos.setAdapter(eventoAdapter);
+                            recyclerViewEventos.setLayoutManager(new LinearLayoutManager(requireContext()));
                         },
                         error -> {
                             // Lida com o erro aqui
@@ -213,6 +199,11 @@ public class HomeFragment extends Fragment {
         String currentYear = String.valueOf(calendar.get(Calendar.YEAR));
         monthTextView.setText(currentMonth);
         yearTextView.setText(currentYear);
+
+        View view = binding.getRoot();
+        RecyclerView recyclerViewEventos = view.findViewById(R.id.recyclerViewNomes);
+        EventoDAO eventoDAO = GeneralDatabase.getInstance(requireContext()).eventoDAO();
+        updateRecycleView(recyclerViewEventos, eventoDAO);
     }
 
     @Override
