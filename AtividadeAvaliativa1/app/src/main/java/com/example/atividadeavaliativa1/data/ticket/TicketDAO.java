@@ -17,7 +17,7 @@ public interface TicketDAO {
     @Query("SELECT * FROM ingresso")
     Flowable<List<Ticket>> getAll();
 
-    @Query("SELECT * FROM ingresso WHERE idUsuario=(:idUsuario)")
-    Flowable<List<Ticket>> getAllByUser(Integer idUsuario);
+    @Query("SELECT * FROM ingresso WHERE emailUsuario=(:emailUsuario)")
+    Flowable<List<Ticket>> getAllByUser(String emailUsuario);
 
 }

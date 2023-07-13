@@ -9,8 +9,8 @@ public class Ticket {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "idUsuario")
-    private Integer idUsuario;
+    @ColumnInfo(name = "emailUsuario")
+    private String emailUsuario;
 
     @ColumnInfo(name = "nomeEventoIngresso")
     private String nomeEventoIngresso;
@@ -33,8 +33,8 @@ public class Ticket {
         this.dataEventoIngresso = dataEventoIngresso;
     }
 
-    public Ticket(Integer idUsuario, String nomeEventoIngresso, String nomePessoa, String contatoEventoIngresso, String dataEventoIngresso) {
-        this.idUsuario = idUsuario;
+    public Ticket(String emailUsuario, String nomeEventoIngresso, String nomePessoa, String contatoEventoIngresso, String dataEventoIngresso) {
+        this.emailUsuario = emailUsuario;
         this.nomeEventoIngresso = nomeEventoIngresso;
         this.nomePessoa = nomePessoa;
         this.contatoEventoIngresso = contatoEventoIngresso;
@@ -52,10 +52,10 @@ public class Ticket {
         this.id = id;
     }
 
-    public Integer getIdUsuario() {return idUsuario;}
+    public String getEmailUsuario() {return emailUsuario;}
 
-    public void setIdUsuario(Integer idUsuario){
-        this.idUsuario = idUsuario;
+    public void setEmailUsuario(String emailUsuario){
+        this.emailUsuario = emailUsuario;
     }
 
     public String getNomeEventoIngresso() {
