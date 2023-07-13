@@ -1,26 +1,20 @@
 package com.example.atividadeavaliativa1.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 
-import com.example.atividadeavaliativa1.CadastroEventoActivity;
-import com.example.atividadeavaliativa1.MainActivity;
 import com.example.atividadeavaliativa1.R;
 import com.example.atividadeavaliativa1.databinding.FragmentHomeBinding;
-import com.example.atividadeavaliativa1.ui.ticket.TicketFragment;
 
 import java.util.Calendar;
 
@@ -43,6 +37,8 @@ public class HomeFragment extends Fragment {
     private int currentMonthIndex = 0;
     private FragmentHomeBinding binding;
 
+    SearchView searchView;
+
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
@@ -51,6 +47,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
+        searchView = view.findViewById(R.id.searchView);
 
         super.onViewCreated(view, savedInstanceState);
 
@@ -87,6 +84,39 @@ public class HomeFragment extends Fragment {
                         .navigate(R.id.action_navigation_home_to_cadastroEventoActivity);
             }
         });
+
+        /*searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                List<Evento> eventosEncontrados = buscarEventos(query);
+                exibirResultados(eventosEncontrados);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                List<Evento> eventosEncontrados = buscarEventos(newText);
+                exibirResultados(eventosEncontrados);
+                return false;
+            }
+
+            private List<Evento> buscarEventos(String query) {
+                GeneralDatabase eventoDatabase = GeneralDatabase.getInstance();
+                EventoDAO eventoDAO = eventoDatabase.eventoDAO();
+
+
+                if (query.isEmpty()) {
+                    return eventoDAO.loadAll();
+                } else {
+                    return eventoDAO.buscarEventosPorNome(query);
+                }
+
+            }
+
+            private void exibirResultados(List<Evento> eventos) {
+                //listaEventosAdapter.atualizarLista(eventos);
+            }
+        });*/
 
         // Obter o mês atual
         Calendar calendar = Calendar.getInstance();

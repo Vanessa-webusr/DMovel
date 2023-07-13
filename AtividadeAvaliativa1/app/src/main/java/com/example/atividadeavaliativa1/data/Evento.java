@@ -15,21 +15,20 @@ public class Evento {
     @ColumnInfo(name = "dataEvento")
     private String dataEvento;
 
-<<<<<<< HEAD
-=======
+
     @ColumnInfo(name = "horaEvento")
     private String horaEvento;
 
->>>>>>> e15433e3d67414ca5f94686eea054e44dbbc5a14
+
     @ColumnInfo(name = "localizacaoEvento")
     private String localizacaoEvento;
 
     @ColumnInfo(name = "descricaoEvento")
     private String descricaoEvento;
 
-<<<<<<< HEAD
+
     // Constructor, getters e setters
-=======
+
     @ColumnInfo(name = "contatoEvento")
     private String contatoEvento;
 
@@ -39,7 +38,7 @@ public class Evento {
 
 
     // Construtor, getters e setters
->>>>>>> d5da3dfefee6818b276c1f270f0414b90adb68a4
+
 
     public Evento(String nomeEvento, String dataEvento, String horaEvento, String localizacaoEvento, String descricaoEvento, String contatoEvento, String nomeContatoEvento) {
         this.nomeEvento = nomeEvento;
