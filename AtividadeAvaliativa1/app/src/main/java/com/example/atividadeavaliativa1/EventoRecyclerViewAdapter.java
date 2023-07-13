@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.atividadeavaliativa1.data.Evento;
-import com.example.atividadeavaliativa1.R;
 
 import java.util.List;
 
@@ -51,8 +50,8 @@ public class EventoRecyclerViewAdapter extends RecyclerView.Adapter<EventoRecycl
 
         public EventoViewHolder(@NonNull View itemView) {
             super(itemView);
-            nomeEventoTextView = itemView.findViewById(R.id.nomeEventoTextView);
-            dataEventoTextView = itemView.findViewById(R.id.dataEventoTextView);
+            nomeEventoTextView = itemView.findViewById(R.id.nomeTicketTextView);
+            dataEventoTextView = itemView.findViewById(R.id.dataTicketTextView);
             itemView.setOnClickListener(this);
             // Inicialize os outros atributos de layout necessários
         }
@@ -77,4 +76,3 @@ public class EventoRecyclerViewAdapter extends RecyclerView.Adapter<EventoRecycl
         void onItemClick(View view, int position);
     }
 }
-

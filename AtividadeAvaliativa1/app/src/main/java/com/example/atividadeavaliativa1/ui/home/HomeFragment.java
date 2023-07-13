@@ -1,28 +1,46 @@
 package com.example.atividadeavaliativa1.ui.home;
 
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import androidx.appcompat.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.atividadeavaliativa1.CadastroEventoActivity;
-import com.example.atividadeavaliativa1.MainActivity;
+import com.example.atividadeavaliativa1.EventoRecyclerViewAdapter;
 import com.example.atividadeavaliativa1.R;
 import com.example.atividadeavaliativa1.databinding.FragmentHomeBinding;
-import com.example.atividadeavaliativa1.ui.ticket.TicketFragment;
 
+import java.text.ParseException;
 import java.util.Calendar;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.ArrayList;
+
+import com.example.atividadeavaliativa1.data.Evento;
+import com.example.atividadeavaliativa1.data.EventoDAO;
+import com.example.atividadeavaliativa1.data.GeneralDatabase;
+
+import io.reactivex.Flowable;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
+
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.DividerItemDecoration;
+
 
 public class HomeFragment extends Fragment {
 
@@ -36,12 +54,17 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private TextView monthTextView;
+    private TextView yearTextView;
     private Button prevMonthButton;
     private Button nextMonthButton;
     private String[] months = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",
             "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
     private int currentMonthIndex = 0;
     private FragmentHomeBinding binding;
+    private SearchView searchView;
+    Calendar calendar = Calendar.getInstance();
+    RecyclerView recyclerViewEventos;
+    EventoAdapter eventoAdapter;
 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,9 +77,15 @@ public class HomeFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        recyclerViewEventos = view.findViewById(R.id.recyclerViewNomes);
+
+        recyclerViewEventos.setLayoutManager(new LinearLayoutManager(requireContext()));
+
         monthTextView = view.findViewById(R.id.monthTextView);
+        yearTextView = view.findViewById(R.id.yearTextView);
         prevMonthButton = view.findViewById(R.id.prevMonthButton);
         nextMonthButton = view.findViewById(R.id.nextMonthButton);
+        searchView = view.findViewById(R.id.searchView);
 
         prevMonthButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +93,10 @@ public class HomeFragment extends Fragment {
                 currentMonthIndex--;
                 if (currentMonthIndex < 0) {
                     currentMonthIndex = months.length - 1;
+                    calendar.add(Calendar.YEAR, -1);
                 }
                 updateMonthTextView();
+
             }
         });
 
@@ -75,8 +106,10 @@ public class HomeFragment extends Fragment {
                 currentMonthIndex++;
                 if (currentMonthIndex >= months.length) {
                     currentMonthIndex = 0;
+                    calendar.add(Calendar.YEAR, 1);
                 }
                 updateMonthTextView();
+
             }
         });
 
@@ -88,8 +121,41 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                List<Evento> eventosEncontrados = buscarEventos(query);
+                exibirResultados(eventosEncontrados);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                List<Evento> eventosEncontrados = buscarEventos(newText);
+                exibirResultados(eventosEncontrados);
+                return false;
+            }
+
+            private List<Evento> buscarEventos(String query) {
+                GeneralDatabase eventoDatabase = GeneralDatabase.getInstance(getActivity().getApplicationContext());
+                EventoDAO eventoDAO = eventoDatabase.eventoDAO();
+
+                if (query.isEmpty()) {
+                    return eventoDAO.loadAll();
+                } else {
+                    return eventoDAO.buscarEventosPorNome(query);
+                }
+            }
+
+
+            private void exibirResultados(List<Evento> eventos) {
+                 //listaEventosAdapter.atualizarLista(eventos);
+                eventoAdapter = new EventoAdapter(eventos);
+                recyclerViewEventos.setAdapter(eventoAdapter);
+            }
+        });
+
         // Obter o mês atual
-        Calendar calendar = Calendar.getInstance();
         int currentMonth = calendar.get(Calendar.MONTH);
         currentMonthIndex = currentMonth;
 
@@ -120,12 +186,33 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-    }
+        /*RecyclerView recyclerViewEventos = view.findViewById(R.id.recyclerViewNomes);*/
+        recyclerViewEventos.setLayoutManager(new LinearLayoutManager(requireContext()));
 
+        EventoDAO eventoDAO = GeneralDatabase.getInstance(requireContext()).eventoDAO();
+        String currentMonth = months[currentMonthIndex];
+        String currentYear = String.valueOf(calendar.get(Calendar.YEAR));
+        Flowable<List<Evento>> flowable = eventoDAO.getAll();
+        //Flowable<List<Evento>> flowable = eventoDAO.getAllMesAno(currentMonth, currentYear);
+        flowable
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        eventos -> {
+                            // Configura o Adapter com a lista de eventos
+                            EventoAdapter eventoAdapter = new EventoAdapter(eventos);
+                            recyclerViewEventos.setAdapter(eventoAdapter);
+                        },
+                        error -> {
+                            // Lida com o erro aqui
+                        }
+                );
+    }
 
     private void updateMonthTextView() {
         String currentMonth = months[currentMonthIndex];
+        String currentYear = String.valueOf(calendar.get(Calendar.YEAR));
         monthTextView.setText(currentMonth);
+        yearTextView.setText(currentYear);
     }
 
     @Override
@@ -133,6 +220,5 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 
 }
