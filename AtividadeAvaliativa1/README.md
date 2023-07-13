@@ -33,7 +33,7 @@ Para executar o aplicativo através de um emulador do Android Studio basta selec
 
 <p float="left">
 
- <img src="https://github.com/Vanessa-webusr/DMovel/tree/final/AtividadeAvaliativa1/emulador.png" width="524" height="84"/>
+ <img src="https://github.com/Vanessa-webusr/DMovel/tree/final/AtividadeAvaliativa1/emulador.png" width="524"/>
 
 </p>
 
@@ -48,7 +48,7 @@ A imagem abaixo apresenta um exemplo de escolha do dispositivo.
 
 <p float="left">
 
- <img src="https://github.com/Vanessa-webusr/DMovel/tree/final/AtividadeAvaliativa1/dispositivo.png" width="564" height="83"/>
+ <img src="https://github.com/Vanessa-webusr/DMovel/tree/final/AtividadeAvaliativa1/dispositivo.png" width="564"/>
 
 </p>
 
