@@ -18,17 +18,16 @@ public class TicketRecyclerViewAdapter extends RecyclerView.Adapter<TicketRecycl
     //private Context context;
     private List<Ticket> tickets;
     private ItemClickListener mClickListener;
-    private LayoutInflater mInflater;
 
-    public TicketRecyclerViewAdapter(Context context, List<Ticket> data) {
-        this.mInflater = LayoutInflater.from(context);
-        this.tickets = data;
+
+    public TicketRecyclerViewAdapter(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     @NonNull
     @Override
     public TicketViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recyclerviewticket_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerviewticket_row, parent, false);
         return new TicketViewHolder(view);
     }
 
@@ -36,9 +35,9 @@ public class TicketRecyclerViewAdapter extends RecyclerView.Adapter<TicketRecycl
     public void onBindViewHolder(@NonNull TicketViewHolder holder, int position) {
         Ticket ticket = tickets.get(position);
         holder.nomePessoaTicketTextView.setText(ticket.getNomePessoa());
-        holder.dataTicketTextView.setText(ticket.getDataEventoIngresso());
         holder.nomeTicketTextView.setText(ticket.getNomeEventoIngresso());
-        holder.contatoTicketTextView.setText(ticket.getContatoEvento());
+        holder.dataTicketTextView.setText(ticket.getDataEventoIngresso());
+        holder.contatoTicketTextView.setText(ticket.getContatoEventoIngresso());
         // Defina os outros atributos do ticket no ViewHolder
     }
 

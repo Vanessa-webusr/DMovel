@@ -11,21 +11,26 @@ import com.example.atividadeavaliativa1.data.ticket.TicketDAO;
 import com.example.atividadeavaliativa1.user.UserDao;
 import com.example.atividadeavaliativa1.user.UserEntity;
 
-@Database(entities = {UserEntity.class, Evento.class, Ticket.class}, version = 1, exportSchema = false)
+@Database(entities = {UserEntity.class, Evento.class, Ticket.class}, version = 1)
 public abstract class GeneralDatabase extends RoomDatabase {
     private static final String dbName = "dmovel.db";
-    private static GeneralDatabase generalDatabase;
-    public static synchronized GeneralDatabase getInstance(Context context) {
-        if (generalDatabase == null) {
-            generalDatabase = Room.databaseBuilder(context, GeneralDatabase.class, dbName)
-                    .fallbackToDestructiveMigration()
-                    .build();
-        }
-        return generalDatabase;
-    }
+    private static volatile GeneralDatabase generalDatabase;
     public abstract UserDao userDao();
 
     public abstract EventoDAO eventoDAO();
 
     public abstract TicketDAO ticketDAO();
+    public static GeneralDatabase getInstance(Context context) {
+        if (generalDatabase == null) {
+            synchronized (GeneralDatabase.class){
+                if(generalDatabase == null){
+                    generalDatabase = Room.databaseBuilder(context, GeneralDatabase.class, dbName)
+                            .fallbackToDestructiveMigration()
+                            .build();
+                }
+            }
+        }
+        return generalDatabase;
+    }
+
 }

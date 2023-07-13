@@ -7,7 +7,8 @@ import androidx.room.Transaction;
 
 import java.util.List;
 
-//import io.reactivex.Flowable;
+import io.reactivex.Flowable;
+import io.reactivex.Completable;
 //import io.reactivex.Single;
 
 @Dao
@@ -16,7 +17,7 @@ public interface EventoDAO {
     void registerEvento(Evento evento);
 
     @Query("SELECT * FROM evento")
-    List<Evento> loadAll();
+    public Flowable<List<Evento>> getAll();
 
     /*@Query("SELECT * FROM evento ORDER BY id ASC")
     public Flowable<List<Evento>> getAll();

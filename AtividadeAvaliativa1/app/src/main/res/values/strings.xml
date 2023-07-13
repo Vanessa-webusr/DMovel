@@ -72,4 +72,7 @@
     <string name="purchase_ticket">Do you want to buy a ticket for this event?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="populate_list_event_fail">Failed to load events!</string>
+    <string name="ticket_empty">You do not have tickets!</string>
+    <string name="event_empty">There are no events available at the moment.</string>
 </resources>

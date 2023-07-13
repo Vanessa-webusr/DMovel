@@ -30,6 +30,7 @@ import com.example.atividadeavaliativa1.data.GeneralDatabase;
 import com.example.atividadeavaliativa1.data.ticket.Ticket;
 import com.example.atividadeavaliativa1.data.ticket.TicketDAO;
 import com.example.atividadeavaliativa1.databinding.FragmentTicketBinding;
+import com.example.atividadeavaliativa1.ui.ticket.CompraIngresso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,19 +40,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 public class TicketFragment extends Fragment {
 
     private FragmentTicketBinding binding;
-
-    private Button btn_comprarIngresso;
-    private ListView listView;
-    private List<Ticket> ticketList;
-    private ArrayAdapter<Ticket> adapter;
-
+    private Flowable<List<Ticket>> ticketList;
+    private List<Ticket> validList;
     private TicketRecyclerViewAdapter ticketRecyclerViewAdapter;
-
-    private TicketViewModel mViewModel;
-    private TicketDAO dao;
 
     public static TicketFragment newInstance() {
         return new TicketFragment();
@@ -60,8 +58,6 @@ public class TicketFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        /*View view = inflater.inflate(R.layout.fragment_ticket, container, false);
-        return view;*/
         binding = FragmentTicketBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         return view;
@@ -70,36 +66,23 @@ public class TicketFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        //btn_comprarIngresso = (Button) view.findViewById(R.id.button_ticket);
-        //listView = listView.findViewById(R.id.listViewTicket);
-
-        binding.ticketRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.ticketRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-
-        // Inicializar a lista de itens
-        ticketList = new ArrayList<>();
-
-        ticketRecyclerViewAdapter = new TicketRecyclerViewAdapter(getContext(),ticketList);
-        binding.ticketRecyclerView.setAdapter(ticketRecyclerViewAdapter);
-
-        GeneralDatabase generalDatabase = GeneralDatabase.getInstance(getContext());
-        dao = generalDatabase.ticketDAO();
-
-        // Popula a lista de eventos do banco de dados
+        // Popula a lista de tickets do banco de dados
         populateTicketList();
 
-        // Configura o adaptador do ListView
-        /*adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, ticketList);
-        listView.setAdapter(adapter);*/
+        if(validList == null){
+            binding.ticketTextViewEmpty.setVisibility(View.VISIBLE);
+        }else {
+            if (validList.isEmpty()) {
+                binding.ticketTextViewEmpty.setVisibility(View.VISIBLE);
+            } else {
+                binding.ticketTextViewEmpty.setVisibility(View.GONE);
 
-
-        /*btn_comprarIngresso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CompraIngresso.class);
-                startActivity(intent);
+                ticketRecyclerViewAdapter = new TicketRecyclerViewAdapter(validList);
+                binding.ticketRecyclerView.setAdapter(ticketRecyclerViewAdapter);
+                binding.ticketRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                binding.ticketRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
             }
-        });*/
+        }
 
         //Como pode ser feito
         binding.buttonTicket.setOnClickListener(new View.OnClickListener() {
@@ -112,54 +95,46 @@ public class TicketFragment extends Fragment {
 
     }
 
-    // Método para popular a lista de itens do banco de dados
-    private void populateTicketList() {
-        ticketList = loadAllValids();
-    }
-
-    //Método para comparar duas datas
-    private List<Ticket> loadAllValids() {
-        //List<Ticket> lista = new ArrayList<Ticket>();
-        List<Ticket> validList = new ArrayList<>();
-
-
-        new Thread(new Runnable() {
-            @Override
-            public void run(){
-                List<Ticket> lista = dao.loadAll();
-                // Obtém a data atual
-                Date currentDate = Calendar.getInstance().getTime();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                String formattedDate = dateFormat.format(currentDate);
-                Date finalDate = null;
-                try {
-                    finalDate = dateFormat.parse(formattedDate);
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-                for(Ticket ticket : lista){
-                    String data = ticket.getDataEventoIngresso();
-                    Date d = null;
+    // Método para popular a lista de itens do banco de dado
+    public void populateTicketList() {
+        validList = new ArrayList<>();
+        TicketDAO ticketDAO = GeneralDatabase.getInstance(getContext()).ticketDAO();
+        ticketList = ticketDAO.getAll();
+        ticketList
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .flatMap(Flowable::fromIterable) // Converte List<Ticket> em Ticket individual
+                .toList() // Converte Ticket individual em List<Ticket>
+                .subscribe(tickets -> {
+                    // Obtém a data atual
+                    Date currentDate = Calendar.getInstance().getTime();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    String formattedDate = dateFormat.format(currentDate);
+                    Date finalDate = null;
                     try {
-                        d = dateFormat.parse(data);
+                        finalDate = dateFormat.parse(formattedDate);
                     } catch (ParseException e) {
                         throw new RuntimeException(e);
                     }
-                    Calendar dataAtual = Calendar.getInstance();
-                    Calendar dataIngresso = Calendar.getInstance();
-                    dataAtual.setTime(finalDate);
-                    dataIngresso.setTime(d);
+                    for(Ticket ticket : tickets){
+                        String data = ticket.getDataEventoIngresso();
+                        Date d = null;
+                        try {
+                            d = dateFormat.parse(data);
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Calendar dataAtual = Calendar.getInstance();
+                        Calendar dataIngresso = Calendar.getInstance();
+                        dataAtual.setTime(finalDate);
+                        dataIngresso.setTime(d);
 
-                    if(dataAtual.after(dataIngresso)){
-                        validList.add(ticket);
+                        if(dataAtual.after(dataIngresso)){
+                            validList.add(ticket);
+                        }
                     }
-                }
-            }
-        }).start();
-
-
-
-        return validList;
-
+                }, error -> {
+                    // Tratamento de erros
+                });
     }
 }

@@ -73,4 +73,7 @@
     <string name="purchase_ticket_success">Ingresso comprado para o evento:</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
+    <string name="populate_list_event_fail">Falha ao carregar os eventos!</string>
+    <string name="ticket_empty">Você não possui ingressos!</string>
+    <string name="event_empty">Não há eventos disponíveis no momento.</string>
 </resources>
