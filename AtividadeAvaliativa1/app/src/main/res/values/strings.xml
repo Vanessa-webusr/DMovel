@@ -73,4 +73,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="use_location">Use my location</string>
+    <string name="populate_list_event_fail">Failed to load events!</string>
+    <string name="ticket_empty">You do not have tickets!</string>
+    <string name="event_empty">There are no events available at the moment.</string>
+    <string name="ticket_logout">Please, log in to view your tickets.</string>
 </resources>

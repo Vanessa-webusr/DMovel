@@ -14,19 +14,18 @@ import com.example.atividadeavaliativa1.data.Evento;
 import java.util.List;
 
 public class EventoRecyclerViewAdapter extends RecyclerView.Adapter<EventoRecyclerViewAdapter.EventoViewHolder> {
-    private Context context;
+
     private List<Evento> eventos;
     private ItemClickListener mClickListener;
 
-    public EventoRecyclerViewAdapter(Context context, List<Evento> eventos) {
-        this.context = context;
+    public EventoRecyclerViewAdapter(List<Evento> eventos) {
         this.eventos = eventos;
     }
 
     @NonNull
     @Override
     public EventoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recyclerview_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_row, parent, false);
         return new EventoViewHolder(view);
     }
 
@@ -50,8 +49,8 @@ public class EventoRecyclerViewAdapter extends RecyclerView.Adapter<EventoRecycl
 
         public EventoViewHolder(@NonNull View itemView) {
             super(itemView);
-            nomeEventoTextView = itemView.findViewById(R.id.nomeTicketTextView);
-            dataEventoTextView = itemView.findViewById(R.id.dataTicketTextView);
+            nomeEventoTextView = itemView.findViewById(R.id.nomeEventoTextView);
+            dataEventoTextView = itemView.findViewById(R.id.dataEventoTextView);
             itemView.setOnClickListener(this);
             // Inicialize os outros atributos de layout necessários
         }
