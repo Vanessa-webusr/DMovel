@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,7 +36,7 @@ public class HomeFragment extends Fragment {
     private int currentMonthIndex = 0;
     private FragmentHomeBinding binding;
 
-    SearchView searchView;
+    //SearchView searchView;
 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +46,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        searchView = view.findViewById(R.id.searchView);
+        //searchView = view.findViewById(R.id.searchView);
 
         super.onViewCreated(view, savedInstanceState);
 
