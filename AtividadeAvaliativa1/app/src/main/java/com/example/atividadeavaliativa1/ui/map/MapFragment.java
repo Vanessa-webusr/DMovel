@@ -45,6 +45,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+//A implementação do código para recuperar a localização do usuário foi baseada no código disponível em https://github.com/Pritish-git/get-Current-Location
+
 public class MapFragment extends Fragment/* implements OnMapReadyCallback*/{
 
     private FragmentMapBinding binding;
