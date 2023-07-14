@@ -61,7 +61,7 @@ public class MapFragment extends Fragment/* implements OnMapReadyCallback*/{
         LocationButton = binding.buttonLocation;
         locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(5000);
+        locationRequest.setInterval(3000);
         locationRequest.setFastestInterval(2000);
 
         LocationButton.setOnClickListener(new View.OnClickListener() {
@@ -97,26 +97,13 @@ public class MapFragment extends Fragment/* implements OnMapReadyCallback*/{
             }
         });
 
-/*        binding.buttonLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-            }
-        });*/
-
         return root;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-    }
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+
     }
 
     @Override
@@ -127,17 +114,13 @@ public class MapFragment extends Fragment/* implements OnMapReadyCallback*/{
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
 
                 if (isGPSEnabled()) {
-
                     getCurrentLocation();
-
-                }else {
-
+                }
+                else {
                     turnOnGPS();
                 }
             }
         }
-
-
     }
 
     @Override
@@ -206,6 +189,50 @@ public class MapFragment extends Fragment/* implements OnMapReadyCallback*/{
 
                 } else {
                     turnOnGPS();
+                    LocationServices.getFusedLocationProviderClient(getActivity())
+                            .requestLocationUpdates(locationRequest, new LocationCallback() {
+                                @Override
+                                public void onLocationResult(@NonNull LocationResult locationResult) {
+                                    super.onLocationResult(locationResult);
+
+                                    LocationServices.getFusedLocationProviderClient(getActivity())
+                                            .removeLocationUpdates(this);
+
+                                    if (locationResult != null && locationResult.getLocations().size() >0){
+
+                                        int index = locationResult.getLocations().size() - 1;
+                                        double latitude = locationResult.getLocations().get(index).getLatitude();
+                                        double longitude = locationResult.getLocations().get(index).getLongitude();
+
+                                        /*AddressText.setText("Latitude: "+ latitude + "\n" + "Longitude: "+ longitude);*/
+                                        SupportMapFragment supportMapFragment=(SupportMapFragment)
+                                                getChildFragmentManager().findFragmentById(R.id.map_image);
+                                        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+                                            @Override
+                                            public void onMapReady(GoogleMap googleMap) {
+                                                // When map is loaded
+                                                //Atualizar pin do mapa para onde clica
+                                                LatLng latLng = new LatLng(latitude, longitude);
+                                                // When clicked on map
+                                                // Initialize marker options
+                                                MarkerOptions markerOptions=new MarkerOptions();
+                                                // Set position of marker
+                                                markerOptions.position(latLng);
+                                                // Set title of marker
+                                                markerOptions.title(latLng.latitude+" : "+latLng.longitude);
+                                                // Remove all marker
+                                                googleMap.clear();
+                                                // Animating to zoom the marker
+                                                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                                                // Add marker on map
+                                                googleMap.addMarker(markerOptions);
+
+                                            }
+                                        });
+                                    }
+                                }
+                            }, Looper.getMainLooper());
+
                 }
 
             } else {
@@ -213,6 +240,8 @@ public class MapFragment extends Fragment/* implements OnMapReadyCallback*/{
             }
         }
     }
+
+    //Ativa o GPS
     private void turnOnGPS() {
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
@@ -228,12 +257,11 @@ public class MapFragment extends Fragment/* implements OnMapReadyCallback*/{
 
                 try {
                     LocationSettingsResponse response = task.getResult(ApiException.class);
-                    Toast.makeText(getContext(), "GPS is already tured on", Toast.LENGTH_SHORT).show();
 
                 } catch (ApiException e) {
 
                     switch (e.getStatusCode()) {
-                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED: //Dispositivo com localização
 
                             try {
                                 ResolvableApiException resolvableApiException = (ResolvableApiException) e;
@@ -243,8 +271,7 @@ public class MapFragment extends Fragment/* implements OnMapReadyCallback*/{
                             }
                             break;
 
-                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                            //Device does not have location
+                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE: //Dispositivo sem localização
                             break;
                     }
                 }
@@ -253,6 +280,7 @@ public class MapFragment extends Fragment/* implements OnMapReadyCallback*/{
 
     }
 
+    //Verifica se o GSP está ativo
     private boolean isGPSEnabled() {
         LocationManager locationManager = null;
         boolean isEnabled = false;
@@ -265,4 +293,11 @@ public class MapFragment extends Fragment/* implements OnMapReadyCallback*/{
         return isEnabled;
 
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
 }
